@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet"href="https://unpkg.com/boxicons@latest/css/boxicons.min.css"
+    <link href="https://cdn.jsdelivr.net/npm/remixicon@4.7.0/fonts/remixicon.css" rel="stylesheet"/>
+    <title>MindNightCODE</title>
+</head>
+<body>
+    <div class="container">
+  <header>
+    <div class="title">
+      <h1>MIDNIGHTCODE</h1>
+    </div>
+
+    <div class="menu-toggle" id="menu-toggle">
+      <span></span>
+      <span></span>
+      <span></span>
+    </div>
+
+    <div class="NavBar" id="navbar">
+      <ul>
+        <li><a href="">HOME</a></li>
+        <li><a href="">LOGIN IN</a></li>
+        <li><a href="">REGISTRARSE</a></li>
+        <li><a href="">ABOUT US</a></li>
+        <li><a href="">NOTIFICATION</a></li>
+        <li><a href="">CHECK IN</a></li>
+      </ul>
+    </div>
+  </header>
+  <section class="container-information">
+    <div class="information-title-butomm">
+        <h1>HORA DE PASAR BIEN</h1>
+        <h1>EN</h1>
+        <h1>MIDNIGHTCODE</h1>
+        <button type="submit">Iniciar Sesión</button>
+        <button type="submit">Registrarse</button>
+    </div>
+  </section>
+  <aside class="container-icons">
+    <div class="icons">
+        <div class="icons-facebook"><i class='bx bxl-facebook'></i></div>
+        <div class="icons-whatsapp"><i class='bx bxl-whatsapp'></i></div>
+        <div class="icons-x"><i class='bx bxl-twitter'></i></div>
+    </div>
+  </aside>
+</div>
+
+<script>
+  const toggle = document.getElementById('menu-toggle');
+  const nav = document.getElementById('navbar');
+
+  toggle.addEventListener('click', () => {
+    nav.classList.toggle('active');
+    toggle.classList.toggle('open');
+  });
+</script>
+
+    
+    
+</body>
+</html>
