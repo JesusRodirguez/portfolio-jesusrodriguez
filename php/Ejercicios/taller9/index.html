@@ -7,9 +7,9 @@
   <link rel="stylesheet" href="style.css">
 </head>
 <body>
-  <!-- ===== NAVBAR ===== -->
+  <!-- Barra principal -->
   <div class="navbar">
-    <h1>Gestión de Productos</h1>
+    <h1>Gestión de Inventario</h1>
     <ul>
       <li><a href="#">Inicio</a></li>
       <li><a href="#">Soporte</a></li>
@@ -17,7 +17,7 @@
     </ul>
   </div>
 
-  <!-- ===== CONTENEDOR PRINCIPAL ===== -->
+  <!-- contenedor -->
   <div class="main-container">
     <select id="accion">
       <option value="">Selecciona una acción</option>
@@ -30,56 +30,105 @@
     <div id="contenedor"></div>
   </div>
 
-  <!-- ===== SCRIPT DINÁMICO ===== -->
+  <!-- validación de datos y la apación de los formularios -->
   <script>
-    const select = document.getElementById('accion');
-    const contenedor = document.getElementById('contenedor');
+  const select = document.getElementById('accion');
+  const contenedor = document.getElementById('contenedor');
 
-    select.addEventListener('change', function() {
-      const opcion = this.value;
-      contenedor.innerHTML = ''; // Limpiar antes de mostrar nuevo contenido
+  // validación function
+  function validarProducto(nombre_producto, precio, stock) {
+    const soloLetras = /^[a-zA-ZáéíóúÁÉÍÓÚñÑ\s]+$/;
+    const soloNumeros = /^[0-9]+(\.[0-9]+)?$/;
 
-      if (opcion === 'registrar') {
-        contenedor.innerHTML = `
-          <form>
-            <h3>Registrar nuevo producto</h3>
-            <input type="text" placeholder="Nombre del producto" required>
-            <input type="number" placeholder="Precio" required>
-            <input type="number" placeholder="Cantidad en stock" required>
-            <button type="submit">Registrar</button>
-          </form>
-        `;
-      } 
-      else if (opcion === 'listar') {
-        contenedor.innerHTML = `
-          <form>
-            <h3>Lista de productos</h3>
-            <p>Aquí se mostrarán los productos registrados.</p>
-            <button type="button">Cargar lista</button>
-          </form>
-        `;
-      } 
-      else if (opcion === 'editar') {
-        contenedor.innerHTML = `
-          <form>
-            <h3>Editar producto</h3>
-            <input type="text" placeholder="Código del producto" required>
-            <input type="text" placeholder="Nuevo nombre">
-            <input type="number" placeholder="Nuevo precio">
-            <button type="submit">Guardar cambios</button>
-          </form>
-        `;
-      } 
-      else if (opcion === 'eliminar') {
-        contenedor.innerHTML = `
-          <form>
-            <h3>Eliminar producto</h3>
-            <input type="text" placeholder="Código del producto" required>
-            <button type="submit">Eliminar</button>
-          </form>
-        `;
-      }
-    });
+    if (!nombre_producto || !precio || !stock) {
+      alert("Todos los campos son obligatorios.");
+      return false;
+    }
+
+    if (!soloLetras.test(nombre_producto)) {
+      alert("El nombre del producto solo debe contener letras.");
+      return false;
+    }
+    if (!soloNumeros.test(precio) || precio <= 0) {
+      alert("El precio debe ser un número mayor que 0.");
+      return false;
+    }
+    if (!soloNumeros.test(stock) || stock < 0) {
+      alert("El stock debe ser un número válido (mayor o igual a 0).");
+      return false;
+    }
+    return true;
+  }
+
+  // eventos y cambio en el el id contenedor
+  select.addEventListener('change', function() {
+    const opcion = this.value;
+    contenedor.innerHTML = '';
+    // if de registrar producto
+    if (opcion === 'registrar') {
+      contenedor.innerHTML = `
+        <form id="formRegistrar">
+          <h3>Registrar nuevo producto</h3>
+          <input type="number" id="cod_producto" placeholder="Código del producto" required>
+          <input type="text" id="nombre_producto" placeholder="Nombre del producto" required>
+          <input type="number" id="precio" placeholder="Precio" required>
+          <input type="number" id="stock" placeholder="Cantidad en stock" required>
+          <button type="submit">Registrar</button>
+        </form>
+      `;
+
+      document.getElementById('formRegistrar').addEventListener('submit', e => {
+        e.preventDefault();
+        const nombre_producto = document.getElementById('nombre_producto').value.trim();
+        const precio = document.getElementById('precio').value.trim();
+        const stock = document.getElementById('stock').value.trim();
+        if (validarProducto(nombre_producto, precio, stock)) {
+          alert("Producto registrado correctamente.");
+        }
+      });
+    } 
+    // else if que aqui se edita el producto
+    else if (opcion === 'editar') {
+      contenedor.innerHTML = `
+        <form id="formEditar">
+          <h3>Editar producto</h3>
+          <input type="number" id="cod_producto" placeholder="Código del producto" required>
+          <input type="text" id="nombre_producto" placeholder="Nuevo nombre" required>
+          <input type="number" id="precio" placeholder="Nuevo precio" required>
+          <input type="number" id="stock" placeholder="Nuevo stock" required>
+          <button type="submit">Guardar cambios</button>
+        </form>
+      `;
+
+      document.getElementById('formEditar').addEventListener('submit', e => {
+        e.preventDefault();
+        const nombre_producto = document.getElementById('nombre_producto').value.trim();
+        const precio = document.getElementById('precio').value.trim();
+        const stock = document.getElementById('stock').value.trim();
+        if (validarProducto(nombre_producto, precio, stock)) {
+          alert("Producto editado correctamente.");
+        }
+      });
+    } 
+    // aparece la lista de los  productos 
+    else if (opcion === 'listar') {
+      contenedor.innerHTML = `
+        <h3>Lista de productos</h3>
+        <p>Aquí se mostrarán los productos registrados.</p>
+        <button type="button">Cargar lista</button>
+      `;
+    } 
+    // eliminar los productos
+    else if (opcion === 'eliminar') {
+      contenedor.innerHTML = `
+        <form>
+          <h3>Eliminar producto</h3>
+          <input type="number" id="cod_producto" placeholder="Código del producto" required>
+          <button type="submit">Eliminar</button>
+        </form>
+      `;
+    }
+  });
   </script>
 </body>
 </html>
