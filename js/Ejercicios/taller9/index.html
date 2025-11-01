@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="./style.css">
+    <title>Document</title>
+</head>
+<body>
+    <!-- NavBar -->
+    <div class="navbar">
+    <h1>Precio Producto</h1>
+    <ul>
+      <li><a href="#">Home</a></li>
+      <li><a href="#">About us</a></li>
+      <li><a href="#">Register</a></li>
+    </ul>
+  </div>
+  <!-- Container -->
+  <div class="Container">
+    <div id="alert"></div>
+    <h1>Calcular Precio de Producto</h1>
+    <div class="Container-grupos">
+        <label for="">nombre del Producto:</label>
+        <input type="text" id="nomProducto" placeholder="Escribe el nombre del producto">
+
+    </div>
+    <div class="Container-grupos">
+        <label for="">Precio del Producto:</label>
+        <input type="text" id="precio" placeholder="Escribe el precio del producto,porfavor">
+
+    </div>
+
+    <div class="Container-grupos">
+        <label for="">Descuento del Producto:</label>
+        <input type="text" id="Descuprecio" placeholder="Escribe el descuento del precio solo los numeros,porfavor">
+
+    </div>
+    <button onclick="resibirDatos()">Calcular</button>
+    <div id="resultado"></div>
+  </div>
+  </div>
+  <script src="main.js"></script>
+</body>
+</html>

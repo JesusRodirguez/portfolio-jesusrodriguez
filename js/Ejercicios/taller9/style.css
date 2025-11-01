@@ -1,0 +1,130 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: "Poppins", sans-serif;
+}
+
+body {
+  background: linear-gradient(0deg, rgb(6, 137, 245),rgb(220, 3, 248));
+  color: #fff;
+  min-height: 100vh;
+}
+
+
+.navbar {
+  width: 100%;
+  background-color: rgb(220, 3, 248);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 15px 50px;
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 100;
+  backdrop-filter: blur(10px);
+  box-shadow: 0 4px 10px white;
+}
+
+.navbar h1 {
+  font-size: 22px;
+  letter-spacing: 1px;
+  color: #fff;
+}
+
+.navbar ul {
+  display: flex;
+  list-style: none;
+}
+
+.navbar ul li {
+  margin: 0 15px;
+}
+
+.navbar ul li a {
+  color: #fff;
+  text-decoration: none;
+  font-weight: 500;
+  transition: 0.3s;
+}
+
+.navbar ul li a:hover {
+  color: cyan;
+}
+
+/* formulario */
+.Container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  min-height: 80vh;
+  margin-top: 100px; /* deja espacio por la navbar */
+  text-align: center;
+  background: rgba(255, 255, 255, 0.1);
+  backdrop-filter: blur(15px);
+  border-radius: 20px;
+  box-shadow: 0 0 20px rgba(255, 255, 255, 0.1);
+  width: 400px;
+  margin-left: auto;
+  margin-right: auto;
+  padding: 30px;
+}
+
+.Container h1 {
+  font-size: 30px;
+  margin-bottom: 20px;
+  color: #fff;
+  letter-spacing: 1px;
+}
+
+.Container-grupos {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  width: 100%;
+  margin-bottom: 15px;
+}
+
+.Container-grupos label {
+  font-size: 14px;
+  margin-bottom: 5px;
+}
+
+.Container-grupos input {
+  width: 100%;
+  padding: 10px;
+  border-radius: 8px;
+  border: none;
+  outline: none;
+  font-size: 14px;
+  background-color: rgba(255, 255, 255, 0.8);
+  color: #333;
+  transition: 0.3s;
+}
+
+.Container-grupos input:focus {
+  background-color: #fff;
+  box-shadow: 0 0 10px cyan;
+}
+
+/* boton */
+button {
+  background-color: rgb(220, 3, 248);
+  border: none;
+  color: #fff;
+  padding: 10px 20px;
+  border-radius: 8px;
+  font-size: 16px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  width: 100%;
+  margin-top: 10px;
+}
+
+button:hover {
+  background-color: rgb(6, 137, 245);
+  transform: scale(1.05);
+  box-shadow: 0 0 10px cyan;
+}
