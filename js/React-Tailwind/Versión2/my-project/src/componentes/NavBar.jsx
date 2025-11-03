@@ -14,7 +14,7 @@ const NavBar = () => {
         <CustomLink to="/" text="to register" />
         <CustomLink to="/login" text="Login in" />
         <CustomLink to="/" text="About us" />
-        <CustomLink to="/" text="Notification" />
+        <CustomLink to="/" text="Contact Us" />
       </ul>
     </div>
   );
