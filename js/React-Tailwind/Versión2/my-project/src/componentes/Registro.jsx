@@ -3,50 +3,73 @@ import Title from "./Title";
 import InPut from "./input";
 import Button from "./Butomm";
 
-const Login = () => {
-  // estado del formulario,guarda los datos o actualiza
-  const [formData, setFormData] = useState({ correo: "", contraseña: "" });
-  // actualizar el estado del formulario
+const Registro = () => {
+  // Estado para los datos del formulario
+  const [formData, setFormData] = useState({
+    nombre: "",
+    telefono: "",
+    correo: "",
+    contraseña: "",
+  });
+
+  // Actualizar el estado del formulario
   const handleChange = (e) => {
     const { name, value } = e.target;
     setFormData((prev) => ({ ...prev, [name]: value }));
   };
-  // cargar el estado y hacer como una validacion por el momento
+
+  // Validación y envío
   const handleSubmit = (e) => {
     e.preventDefault();
-    if (!formData.correo || !formData.contraseña) {
+
+    // Validación simple de campos vacíos
+    if (!formData.nombre || !formData.telefono || !formData.correo || !formData.contraseña) {
       alert("Por favor completa todos los campos");
       return;
     }
-    // validacion de que no este vacio los campos
-    if (formData.correo === "admin@gmail.com" && formData.contraseña === "12345") {
-      alert("Inicio de sesión exitoso ");
-    } else {
-      alert("Incorrectas, Volver a intentar ");
-    }
+
+    // Simulación de registro exitoso
+    alert(`Usuario registrado: ${formData.nombre}`);
+    console.log("Datos del registro:", formData);
   };
 
   return (
     <div
       className="flex items-center justify-center min-h-screen bg-cover bg-center font-[Inter]"
       style={{
-        backgroundImage: `url('public/img/fondo.jpg')`, // cambia esta ruta a tu fondo real
+        backgroundImage: `url('public/img/fondo.jpg')`, // 🔹 Ajusta a tu ruta real
       }}
     >
       <div className="bg-[#ffffff]/10 dark:bg-[#0f0f0f]/70 backdrop-blur-xl border border-[#ffffff1a] shadow-xl rounded-3xl p-10 w-[90%] max-w-md text-center">
         
-        {/* Nombre del Proyecto */}
+        {/* 🔸 Nombre del Proyecto */}
         <h2 className="text-3xl font-bold text-[#b79b74] mb-2">MidnightCode</h2>
         
-        {/* Título LOGIN */}
-        <Title texto="Login" />
+        {/* 🔸 Título Registro */}
+        <Title texto="Registro" />
         <p className="text-sm text-gray-300 mb-6">
-          Accede a tu cuenta para continuar
+          Crea tu cuenta para unirte a la experiencia
         </p>
 
+        {/* 🔸 Formulario */}
         <form onSubmit={handleSubmit} className="space-y-4">
           <InPut
-            texto=""
+            type="text"
+            name="nombre"
+            placeholder="Nombre completo"
+            value={formData.nombre}
+            onChange={handleChange}
+          />
+
+          <InPut
+            type="tel"
+            name="telefono"
+            placeholder="Teléfono"
+            value={formData.telefono}
+            onChange={handleChange}
+          />
+
+          <InPut
             type="email"
             name="correo"
             placeholder="Correo electrónico"
@@ -55,7 +78,6 @@ const Login = () => {
           />
 
           <InPut
-            texto=""
             type="password"
             name="contraseña"
             placeholder="Contraseña"
@@ -63,18 +85,10 @@ const Login = () => {
             onChange={handleChange}
           />
 
-          <div className="flex justify-between text-xs text-gray-400">
-            <label className="flex items-center space-x-1 cursor-pointer">
-              <input type="checkbox" className="accent-[#b79b74]" />
-              <span>Recordarme</span>
-            </label>
-            <p className="hover:underline cursor-pointer">¿Olvidaste tu contraseña?</p>
-          </div>
-
           <Button
-            texto="Iniciar Sesión"
+            texto="Registrarme"
             type="submit"
-            className="w-full bg-[#b79b74] text-black font-medium py-3 rounded-lg hover:bg-[#c9ae86] transition-all"
+            className="w-full bg-[#b79b74] text-black text-xl font-semibold py-3 px-4 rounded-lg hover:bg-[#c9ae86] transition-all duration-200 cursor-pointer"
           />
         </form>
       </div>
@@ -82,4 +96,4 @@ const Login = () => {
   );
 };
 
-export default Login;
+export default Registro;

@@ -1,23 +1,31 @@
 import React from "react";
-import NavBar from "./NavBar";
 import { Swiper, SwiperSlide } from "swiper/react";
 import { Autoplay, EffectFade } from "swiper/modules";
 import "swiper/css";
 import "swiper/css/effect-fade";
 import { Phone, Mail, Facebook } from "lucide-react";
+import { Link } from "react-router-dom";
+import '../index.css'
 
 const Home = () => {
   return (
     <div className="bg-white text-black">
-      {/* Navbar fija arriba */}
-      <NavBar />
+
+      {/* Navbar integrada */}
+      <div className="w-screen flex flex-col items-center justify-center bg-white text-black py-4 border-b border-gray-300">
+        <h1 className="text-3xl font-bold mb-2 text-center">MidnightCode</h1>
+
+        <ul className="flex gap-8 justify-center">
+          <CustomLink to="/" text="Home" />
+          <CustomLink to="/registro" text="Register" />   
+          <CustomLink to="/login" text="Login" />         
+          <CustomLink to="#about" text="About us" />      
+          <CustomLink to="#contact" text="Contact Us" />
+        </ul>
+      </div>
 
       {/* Carrusel principal */}
       <section className="w-full h-[80vh] relative">
-        {/* Carrusel de las imágenes */}
-        {/* Carrucel de las imajnes
-        autoplay se cambia solo,effectfade que al cambiarse se desbanesca
-        loop bucle */}
         <Swiper
           modules={[Autoplay, EffectFade]}
           effect="fade"
@@ -54,8 +62,8 @@ const Home = () => {
         </Swiper>
       </section>
 
-      {/* Contenido inferior (scrollable) */}
-      <section className="w-full max-w-6xl mx-auto mt-20 px-6">
+      {/* Contenido inferior (About Us) */}
+      <section id="about" className="w-full max-w-6xl mx-auto mt-20 px-6">
         <h2 className="text-3xl font-bold text-center mb-6">Sobre Nosotros</h2>
         <p className="text-lg text-center leading-relaxed mb-12">
           Bienvenido a <strong>MidnightCode</strong>, un espacio donde la
@@ -91,54 +99,28 @@ const Home = () => {
         </div>
       </section>
 
-      {/* Footer */}
-      <footer className="flex flex-col items-center w-full bg-black text-white px-14 py-14 gap-6 mt-20">
-        <h2 className="text-3xl font-bold">Muchas Gracias</h2>
+      {/* Footer (Contact) */}
+      <footer id="contact" className="flex flex-col items-center w-full bg-black text-white px-14 py-14 gap-6 mt-20">
+        <h2 className="text-3xl font-bold">Muchas Gracias por Visitarnos</h2>
 
         <div className="flex flex-col md:flex-row gap-6 md:gap-10 items-center text-lg">
-          {/* Teléfono */}
-          <a
-            href="tel:+573001234567"
-            className="flex items-center gap-2 hover:text-purple-400 transition-colors"
-          >
+          <a href="tel:+573001234567" className="flex items-center gap-2 hover:text-purple-400 transition-colors">
             <Phone size={24} />
             <span>+57 300 123 4567</span>
           </a>
 
-          {/* Correo */}
-          <a
-            href="mailto:contacto@ejemplo.com"
-            className="flex items-center gap-2 hover:text-purple-400 transition-colors"
-          >
+          <a href="mailto:contacto@ejemplo.com" className="flex items-center gap-2 hover:text-purple-400 transition-colors">
             <Mail size={24} />
             <span>contacto@ejemplo.com</span>
           </a>
 
-          {/* Facebook */}
-          <a
-            href="https://facebook.com/tupagina"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="flex items-center gap-2 hover:text-purple-400 transition-colors"
-          >
+          <a href="https://facebook.com/tupagina" target="_blank" rel="noopener noreferrer" className="flex items-center gap-2 hover:text-purple-400 transition-colors">
             <Facebook size={24} />
             <span>Facebook</span>
           </a>
 
-          {/* TikTok */}
-          <a
-            href="https://tiktok.com/@tuusuario"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="flex items-center gap-2 hover:text-purple-400 transition-colors"
-          >
-            <svg
-              xmlns="http://www.w3.org/2000/svg"
-              width="24"
-              height="24"
-              viewBox="0 0 24 24"
-              fill="currentColor"
-            >
+          <a href="https://tiktok.com/@tuusuario" target="_blank" rel="noopener noreferrer" className="flex items-center gap-2 hover:text-purple-400 transition-colors">
+            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="currentColor">
               <path d="M19.59 6.69a4.83 4.83 0 0 1-3.77-4.25V2h-3.45v13.67a2.89 2.89 0 0 1-5.2 1.74 2.89 2.89 0 0 1 2.31-4.64 2.93 2.93 0 0 1 .88.13V9.4a6.84 6.84 0 0 0-1-.05A6.33 6.33 0 0 0 5 20.1a6.34 6.34 0 0 0 10.86-4.43v-7a8.16 8.16 0 0 0 4.77 1.52v-3.4a4.85 4.85 0 0 1-1-.1z" />
             </svg>
             <span>TikTok</span>
@@ -151,6 +133,17 @@ const Home = () => {
         </div>
       </footer>
     </div>
+  );
+};
+
+// Componente Link personalizado
+const CustomLink = ({ to, text }) => {
+  return (
+    <li>
+      <a href={to} className="hover:text-cyan-400 transition duration-300">
+        {text}
+      </a>
+    </li>
   );
 };
 

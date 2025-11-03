@@ -11,10 +11,10 @@ const NavBar = () => {
 
       <ul className="flex gap-8 justify-center">
         <CustomLink to="/" text="Home" />
-        <CustomLink to="/" text="to register" />
-        <CustomLink to="/login" text="Login in" />
-        <CustomLink to="/" text="About us" />
-        <CustomLink to="/" text="Contact Us" />
+        <CustomLink to="/registro" text="Register" />   
+        <CustomLink to="/login" text="Login" />         
+        <CustomLink to="about" text="About us" />      
+        <CustomLink to="contact" text="Contact Us" />
       </ul>
     </div>
   );

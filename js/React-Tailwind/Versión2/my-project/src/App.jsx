@@ -1,20 +1,15 @@
-import { Routes, Route, useLocation } from "react-router-dom";
-import Login from "./componentes/Login";
-import "./index.css";
+import { Routes, Route } from "react-router-dom";
 import Home from "./componentes/home";
+import Login from "./componentes/Login";
+import Registro from "./componentes/Registro";
 
 function App() {
-  const location = useLocation();
-
-  // si estás en /login, no se muestra el Home (NavBar incluida)
-  const hideHome = location.pathname === "/login";
-
   return (
     <div>
-      {!hideHome && <Home />} {/* muestra Home solo si no estás en /login */}
-
       <Routes>
+        <Route path="/" element={<Home />} />
         <Route path="/login" element={<Login />} />
+        <Route path="/registro" element={<Registro />} />
       </Routes>
     </div>
   );

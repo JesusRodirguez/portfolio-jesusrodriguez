@@ -8,7 +8,7 @@ const Button = ({ texto = "Enviar", type = "button", onClick, disabled = false, 
             type={type} 
             onClick={onClick} 
             disabled={disabled}
-            className={`px-4 py-2 rounded-lg font-semibold transition duration-300 ${clase}`}
+            className={`px-4 py-2 rounded-lg font-semibold transition duration-300 ${clase} cursor-pointer`}
             >
             {texto}
         </button>
