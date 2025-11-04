@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import Title from "./Title";
-import InPut from "./input";
+import InPut from "./InPut";
 import Button from "./Butomm";
 
 const Login = () => {
