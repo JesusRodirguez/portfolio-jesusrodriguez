@@ -5,7 +5,7 @@ import "swiper/css";
 import "swiper/css/effect-fade";
 import { Phone, Mail, Facebook } from "lucide-react";
 import { Link } from "react-router-dom";
-import '../index.css'
+// import '../index.css'
 
 const Home = () => {
   return (

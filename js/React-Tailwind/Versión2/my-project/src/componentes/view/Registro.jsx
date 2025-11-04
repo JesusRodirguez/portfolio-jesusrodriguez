@@ -1,7 +1,7 @@
 import React, { useState } from "react";
-import Title from "./Title";
-import InPut from "./input";
-import Button from "./Butomm";
+import Title from "../Title";
+import InPut from "../InPut";
+import Button from "../Butomm";
 
 const Registro = () => {
   // Estado para los datos del formulario
