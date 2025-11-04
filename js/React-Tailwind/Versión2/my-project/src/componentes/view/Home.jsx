@@ -5,6 +5,7 @@ import "swiper/css";
 import "swiper/css/effect-fade";
 import { Phone, Mail, Facebook } from "lucide-react";
 import { Link } from "react-router-dom";
+import CustomLink from "../CustomLink";
 // import '../index.css'
 
 const Home = () => {
@@ -136,15 +137,6 @@ const Home = () => {
   );
 };
 
-// Componente Link personalizado
-const CustomLink = ({ to, text }) => {
-  return (
-    <li>
-      <a href={to} className="hover:text-cyan-400 transition duration-300">
-        {text}
-      </a>
-    </li>
-  );
-};
+
 
 export default Home;

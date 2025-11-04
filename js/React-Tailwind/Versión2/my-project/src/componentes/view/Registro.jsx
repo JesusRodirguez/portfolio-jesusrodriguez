@@ -42,16 +42,16 @@ const Registro = () => {
     >
       <div className="bg-[#ffffff]/10 dark:bg-[#0f0f0f]/70 backdrop-blur-xl border border-[#ffffff1a] shadow-xl rounded-3xl p-10 w-[90%] max-w-md text-center">
         
-        {/* 🔸 Nombre del Proyecto */}
+        {/*  Nombre del Proyecto */}
         <h2 className="text-3xl font-bold text-[#b79b74] mb-2">MidnightCode</h2>
         
-        {/* 🔸 Título Registro */}
+        {/*  Título Registro */}
         <Title texto="Registro" />
         <p className="text-sm text-gray-300 mb-6">
           Crea tu cuenta para unirte a la experiencia
         </p>
 
-        {/* 🔸 Formulario */}
+        {/*  Formulario */}
         <form onSubmit={handleSubmit} className="space-y-4">
           <InPut
             type="text"
