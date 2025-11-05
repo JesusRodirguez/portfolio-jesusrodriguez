@@ -1,7 +1,7 @@
 import React from "react";
 import '../index.css';
 
-const Section = ({id = "", classSection = "", classH2 = "", texth2 = "",
+const AboutSection = ({id = "", classSection = "", classH2 = "", texth2 = "",
   classP = "", textp = "", textstrong = "" }) => {
   return (
     <section id={id} className={classSection}>
@@ -14,4 +14,4 @@ const Section = ({id = "", classSection = "", classH2 = "", texth2 = "",
   );
 };
 
-export default Section;
+export default AboutSection;
