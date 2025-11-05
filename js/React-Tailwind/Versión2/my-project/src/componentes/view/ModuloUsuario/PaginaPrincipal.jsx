@@ -1,10 +1,9 @@
 import React from "react";
-import Navbar from "../NavBar";
-import CustomLink from "../CustomLink";
-import Carrucel from "../Swiper";
+import CustomLink from "../../CustomLink";
+import Carrucel from "../../Swiper";
 import { SwiperSlide } from "swiper/react";
 import { Autoplay, EffectFade } from "swiper/modules";
-
+import Navbar from "../../NavBar";
 
 const PaginaPrincipal = () => {
     return(
@@ -16,13 +15,14 @@ const PaginaPrincipal = () => {
             TextoH1="MidnightCode"
             ClassUl="flex gap-8 justify-center"
             >
-                <CustomLink to="/" text="Home" />
-                <CustomLink to="" text="Eventos" />
-                <CustomLink to="" text="Menu" />
-                <CustomLink to="" text="Reservas" />
-                <CustomLink to="" text="Cancion" />
-                <CustomLink to="" text="About us" />
-                <CustomLink to="" text="Ayuda" />
+                <CustomLink to="/" text="Salir" />
+                <CustomLink to="/pagina-principal" text="Home" />
+                <CustomLink to="/Eventos" text="Eventos" />
+                <CustomLink to="/Menu" text="Menu" />
+                <CustomLink to="/Reservas" text="Reservas" />
+                <CustomLink to="/Cancion" text="Canciones" />
+                <CustomLink to="/AboutUs" text="About us" />
+                <CustomLink to="/Ayuda" text="Ayuda" />
             </Navbar>
 
             {/*  Compoenente Carucel */}
