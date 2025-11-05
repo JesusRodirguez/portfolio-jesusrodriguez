@@ -2,7 +2,7 @@ import React from "react";
 import Navbar from "../../NavBar";
 import CustomLink from "../../CustomLink";
 
-const PaginaPrincipalAdministrador = () =>{
+const GestionVentas = () =>{
     return(
         <div className="bg-white text-black">
             {/* Componente NavBar */}
@@ -22,8 +22,8 @@ const PaginaPrincipalAdministrador = () =>{
                 <CustomLink to="/GestionInventario" text="Inventario" />
                 <CustomLink to="/GestionCanciones" text="Canciones" />
             </Navbar>
-            <h1>Hola Admininistrador </h1>
+            <h1>Gestión Ventas</h1>
         </div>
     )
 }
-export default PaginaPrincipalAdministrador;
+export default GestionVentas;

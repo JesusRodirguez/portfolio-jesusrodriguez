@@ -10,6 +10,13 @@ import Reservas from "./componentes/view/ModuloUsuario/Reservas";
 import Menu from "./componentes/view/ModuloUsuario/Menu";
 import Eventos from "./componentes/view/ModuloUsuario/Eventos";
 import PaginaPrincipalAdministrador from "./componentes/view/ModuloAdministrador/PaginaPrincipalAdministrador";
+import GestionEventos from "./componentes/view/ModuloAdministrador/GestionEventos";
+import GestionHorario from "./componentes/view/ModuloAdministrador/GestionHorario";
+import GestionReserva from "./componentes/view/ModuloAdministrador/GestionReserva";
+import GestionUsuario from "./componentes/view/ModuloAdministrador/GestionUsuario";
+import GestionVentas from "./componentes/view/ModuloAdministrador/GestionVentas";
+import GestionInventario from "./componentes/view/ModuloAdministrador/GestionInventario";
+import GestionCanciones from "./componentes/view/ModuloAdministrador/GestionCanciones";
 
 function App() {
   return (
@@ -31,6 +38,13 @@ function App() {
 
         {/* Modulo Administrador */}
         <Route path="/PaginaPrincipalAdministrador" element={<PaginaPrincipalAdministrador />} />
+        <Route path="/GestionEventos" element={<GestionEventos />} />
+        <Route path="/GestionHorario" element={<GestionHorario />} />
+        <Route path="/GestionReserva" element={<GestionReserva />} />
+        <Route path="/GestionUsuario" element={<GestionUsuario />} />
+        <Route path="/GestionVentas" element={<GestionVentas />} />
+        <Route path="/GestionInventario" element={<GestionInventario />} />
+        <Route path="/GestionCanciones" element={<GestionCanciones />} />
       </Routes>
     </div>
   );
