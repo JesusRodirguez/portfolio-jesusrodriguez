@@ -30,56 +30,63 @@ const Login = () => {
   };
 
   return (
-    <div
-      className="flex items-center justify-center min-h-screen bg-cover bg-center font-[Inter]"
-      style={{
-        backgroundImage: `url('public/img/fondo.jpg')`, // cambia esta ruta a tu fondo real
-      }}
-    >
-      <div className="bg-[#ffffff]/10 dark:bg-[#0f0f0f]/70 backdrop-blur-xl border border-[#ffffff1a] shadow-xl rounded-3xl p-10 w-[90%] max-w-md text-center">
+    <div className="flex items-center justify-center h-screen bg-white font-[Inter]">
+      <div className="flex w-[90%] max-w-5xl h-[70vh] shadow-lg">
         
-        {/* Nombre del Proyecto */}
-        <h2 className="text-3xl font-bold text-[#b79b74] mb-2">MidnightCode</h2>
-        
-        {/* Título LOGIN */}
-        <Title texto="Login" />
-        <p className="text-sm text-gray-300 mb-6">
-          Accede a tu cuenta para continuar
-        </p>
+        {/* Lado izquierdo (formulario) */}
+        <div className="w-1/2 bg-white flex flex-col justify-center items-center">
+          <div className="w-[80%] max-w-sm text-center">
+            <h2 className="text-3xl font-bold text-[#7C3AED] mb-2">MidnightCode</h2>
+            {/* Componente Title */}
+            <Title texto="Iniciar Sesión" ClassName="text-2xl font-semibold mb-2 text-[#7C3AED]" />
+            <p className="text-sm text-gray-500 mb-6">
+              Ingresa tus credenciales para continuar
+            </p>
 
-        <form onSubmit={handleSubmit} className="space-y-4">
-          <InPut
-            texto=""
-            type="email"
-            name="correo"
-            placeholder="Correo electrónico"
-            value={formData.correo}
-            onChange={handleChange}
-          />
+            <form onSubmit={handleSubmit} className="space-y-4">
+              {/* Componenete InPut */}
+              <InPut
+                type="email"
+                name="correo"
+                placeholder="Correo electrónico"
+                value={formData.correo}
+                onChange={handleChange}
+                ClassName="w-full border border-gray-300 px-4 py-2 text-sm focus:outline-none focus:border-[#7C3AED]"
+              />
+              
+              <InPut
+                type="password"
+                name="contraseña"
+                placeholder="Contraseña"
+                value={formData.contraseña}
+                onChange={handleChange}
+                ClassName="w-full border border-gray-300 px-4 py-2 text-sm focus:outline-none focus:border-[#7C3AED]"
+              />
 
-          <InPut
-            texto=""
-            type="password"
-            name="contraseña"
-            placeholder="Contraseña"
-            value={formData.contraseña}
-            onChange={handleChange}
-          />
-
-          <div className="flex justify-between text-xs text-gray-400">
-            <label className="flex items-center space-x-1 cursor-pointer">
-              <input type="checkbox" className="accent-[#b79b74]" />
-              <span>Recordarme</span>
-            </label>
-            <p className="hover:underline cursor-pointer">¿Olvidaste tu contraseña?</p>
+              <div className="flex justify-between text-xs text-gray-500">
+                <label className="flex items-center space-x-1 cursor-pointer">
+                  <input type="checkbox" className="accent-[#7C3AED]" />
+                  <span>Recordarme</span>
+                </label>
+                <p className="hover:underline cursor-pointer">¿Olvidaste tu contraseña?</p>
+              </div>
+              {/* Componenete Button */}
+              <Button
+                texto="Iniciar Sesión"
+                type="submit"
+                ClassName="w-full bg-[#7C3AED] text-white font-medium py-2 hover:bg-[#6D28D9] transition-all cursor-pointer"
+              />
+            </form>
           </div>
+        </div>
 
-          <Button
-            texto="Iniciar Sesión"
-            type="submit"
-            className="w-full bg-[#b79b74] text-black font-medium py-3 rounded-lg hover:bg-[#c9ae86] transition-all"
-          />
-        </form>
+        {/* Imajen */}
+        <div
+          className="w-1/2 bg-cover bg-center"
+          style={{
+            backgroundImage: `url('public/img/fondo.jpg')`, // ajusta si tu imagen está en otra ruta
+          }}
+        ></div>
       </div>
     </div>
   );

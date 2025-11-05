@@ -16,7 +16,7 @@ const PaginaPrincipal = () => {
             TextoH1="MidnightCode"
             ClassUl="flex gap-8 justify-center"
             >
-                <CustomLink to="" text="Home" />
+                <CustomLink to="/" text="Home" />
                 <CustomLink to="" text="Eventos" />
                 <CustomLink to="" text="Menu" />
                 <CustomLink to="" text="Reservas" />

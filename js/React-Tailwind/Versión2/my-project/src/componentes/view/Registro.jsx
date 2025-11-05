@@ -34,63 +34,77 @@ const Registro = () => {
   };
 
   return (
-    <div
-      className="flex items-center justify-center min-h-screen bg-cover bg-center font-[Inter]"
-      style={{
-        backgroundImage: `url('public/img/fondo.jpg')`, // 🔹 Ajusta a tu ruta real
-      }}
-    >
-      <div className="bg-[#ffffff]/10 dark:bg-[#0f0f0f]/70 backdrop-blur-xl border border-[#ffffff1a] shadow-xl rounded-3xl p-10 w-[90%] max-w-md text-center">
+    <div className="flex items-center justify-center h-screen bg-white font-[Inter]">
+      <div className="flex w-[90%] max-w-5xl h-[70vh] shadow-lg">
         
-        {/*  Nombre del Proyecto */}
-        <h2 className="text-3xl font-bold text-[#b79b74] mb-2">MidnightCode</h2>
-        
-        {/*  Título Registro */}
-        <Title texto="Registro" />
-        <p className="text-sm text-gray-300 mb-6">
-          Crea tu cuenta para unirte a la experiencia
-        </p>
+        {/* 🔹 Lado izquierdo (formulario) */}
+        <div className="w-1/2 bg-white flex flex-col justify-center items-center">
+          <div className="w-[80%] max-w-sm text-center">
 
-        {/*  Formulario */}
-        <form onSubmit={handleSubmit} className="space-y-4">
-          <InPut
-            type="text"
-            name="nombre"
-            placeholder="Nombre completo"
-            value={formData.nombre}
-            onChange={handleChange}
-          />
+            {/*  Nombre del Proyecto */}
+            <h2 className="text-3xl font-bold text-[#7C3AED] mb-2">MidnightCode</h2>
+            
+            {/*  Componente Title */}
+            <Title texto="Registro" ClassName="text-2xl font-semibold mb-2 text-[#7C3AED]" />
+            <p className="text-sm text-gray-500 mb-6">
+              Crea tu cuenta para unirte a la experiencia
+            </p>
 
-          <InPut
-            type="tel"
-            name="telefono"
-            placeholder="Teléfono"
-            value={formData.telefono}
-            onChange={handleChange}
-          />
+            {/*  Formulario */}
+            <form onSubmit={handleSubmit} className="space-y-4">
+              {/* Componente Input */}
+              <InPut
+                type="text"
+                name="nombre"
+                placeholder="Nombre completo"
+                value={formData.nombre}
+                onChange={handleChange}
+                ClassName="w-full border border-gray-300 px-4 py-2 text-sm focus:outline-none focus:border-[#7C3AED]"
+              />
 
-          <InPut
-            type="email"
-            name="correo"
-            placeholder="Correo electrónico"
-            value={formData.correo}
-            onChange={handleChange}
-          />
+              <InPut
+                type="tel"
+                name="telefono"
+                placeholder="Teléfono"
+                value={formData.telefono}
+                onChange={handleChange}
+                ClassName="w-full border border-gray-300 px-4 py-2 text-sm focus:outline-none focus:border-[#7C3AED]"
+              />
 
-          <InPut
-            type="password"
-            name="contraseña"
-            placeholder="Contraseña"
-            value={formData.contraseña}
-            onChange={handleChange}
-          />
+              <InPut
+                type="email"
+                name="correo"
+                placeholder="Correo electrónico"
+                value={formData.correo}
+                onChange={handleChange}
+                ClassName="w-full border border-gray-300 px-4 py-2 text-sm focus:outline-none focus:border-[#7C3AED]"
+              />
 
-          <Button
-            texto="Registrarme"
-            type="submit"
-            className="w-full bg-[#b79b74] text-black text-xl font-semibold py-3 px-4 rounded-lg hover:bg-[#c9ae86] transition-all duration-200 cursor-pointer"
-          />
-        </form>
+              <InPut
+                type="password"
+                name="contraseña"
+                placeholder="Contraseña"
+                value={formData.contraseña}
+                onChange={handleChange}
+                ClassName="w-full border border-gray-300 px-4 py-2 text-sm focus:outline-none focus:border-[#7C3AED]"
+              />
+              {/* Componenete Bottom */}
+              <Button
+                texto="Registrarme"
+                type="submit"
+                ClassName="w-full bg-[#7C3AED] text-white text-lg font-semibold py-2 hover:bg-[#6D28D9] transition-all cursor-pointer"
+              />
+            </form>
+          </div>
+        </div>
+
+        {/*imagen */}
+        <div
+          className="w-1/2 bg-cover bg-center"
+          style={{
+            backgroundImage: `url('public/img/fondo.jpg')`, // 🔹 Ajusta a tu ruta real
+          }}
+        ></div>
       </div>
     </div>
   );
