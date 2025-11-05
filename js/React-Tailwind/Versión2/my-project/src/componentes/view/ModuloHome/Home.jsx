@@ -3,12 +3,12 @@ import { SwiperSlide } from "swiper/react";
 import { Autoplay, EffectFade } from "swiper/modules";
 import { Phone, Mail, Facebook } from "lucide-react";
 import { Link } from "react-router-dom";
-import CustomLink from "../CustomLink";
-import Footer, { LinkNormal, LinkIconos } from "../Fotter";
-import CardCaracteristica from "../CardCaracteristica";
-import AboutSection from "../SectionPrincipal";
-import Navbar from "../NavBar";
-import Carrucel from "../Swiper"; 
+import CustomLink from "../../CustomLink";
+import Footer, { LinkNormal, LinkIconos } from "../../Fotter";
+import CardCaracteristica from "../../CardCaracteristica";
+import AboutSection from "../../SectionPrincipal";
+import Navbar from "../../NavBar";
+import Carrucel from "../../Swiper"; 
 
 import "swiper/css";
 import "swiper/css/effect-fade";

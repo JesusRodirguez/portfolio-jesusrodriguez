@@ -1,8 +1,8 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
-import Title from "../Title";
-import InPut from "../InPut";
-import Button from "../Butomm";
+import Title from "../../Title";
+import InPut from "../../InPut";
+import Button from "../../Butomm";
 
 const Login = () => {
   const navigate = useNavigate();
@@ -21,10 +21,14 @@ const Login = () => {
       return;
     }
     // validacion de que no este vacio los campos
-    if (formData.correo === "admin@gmail.com" && formData.contraseña === "12345") {
+    if (formData.correo === "usuario@gmail.com" && formData.contraseña === "12345") {
       alert("Inicio de sesión exitoso ");
       navigate("/pagina-principal");
-    } else {
+    }
+    else if (formData.correo === "admin@gmail.com" && formData.contraseña === "12345"){
+      navigate("/PaginaPrincipalAdministrador")
+    } 
+    else {
       alert("Incorrectas, Volver a intentar ");
     }
   };
