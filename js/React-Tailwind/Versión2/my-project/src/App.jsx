@@ -1,7 +1,9 @@
 import { Routes, Route } from "react-router-dom";
+// Modulo Home
 import Home from "./componentes/view/ModuloHome/Home";
 import Login from "./componentes/view/ModuloHome/Login";
 import Registro from "./componentes/view/ModuloHome/Registro";
+// Modulo Usuario 
 import PaginaPrincipal from "./componentes/view/ModuloUsuario/PaginaPrincipal";
 import AboutUs from "./componentes/view/ModuloUsuario/AboutUs";
 import Ayuda from "./componentes/view/ModuloUsuario/Ayuda";
@@ -9,6 +11,7 @@ import Canciones from "./componentes/view/ModuloUsuario/Canciones";
 import Reservas from "./componentes/view/ModuloUsuario/Reservas";
 import Menu from "./componentes/view/ModuloUsuario/Menu";
 import Eventos from "./componentes/view/ModuloUsuario/Eventos";
+// Modulo Administrador
 import PaginaPrincipalAdministrador from "./componentes/view/ModuloAdministrador/PaginaPrincipalAdministrador";
 import GestionEventos from "./componentes/view/ModuloAdministrador/GestionEventos";
 import GestionHorario from "./componentes/view/ModuloAdministrador/GestionHorario";
@@ -17,6 +20,7 @@ import GestionUsuario from "./componentes/view/ModuloAdministrador/GestionUsuari
 import GestionVentas from "./componentes/view/ModuloAdministrador/GestionVentas";
 import GestionInventario from "./componentes/view/ModuloAdministrador/GestionInventario";
 import GestionCanciones from "./componentes/view/ModuloAdministrador/GestionCanciones";
+import GestionMenu from "./componentes/view/ModuloAdministrador/GestionMenu";
 
 function App() {
   return (
@@ -45,6 +49,7 @@ function App() {
         <Route path="/GestionVentas" element={<GestionVentas />} />
         <Route path="/GestionInventario" element={<GestionInventario />} />
         <Route path="/GestionCanciones" element={<GestionCanciones />} />
+        <Route path="/GestionMenu" element={<GestionMenu />} />
       </Routes>
     </div>
   );

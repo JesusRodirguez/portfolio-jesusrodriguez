@@ -21,6 +21,7 @@ const PaginaPrincipalAdministrador = () =>{
                 <CustomLink to="/GestionVentas" text="Ventas" />
                 <CustomLink to="/GestionInventario" text="Inventario" />
                 <CustomLink to="/GestionCanciones" text="Canciones" />
+                <CustomLink to="/GestionCanciones" text="Menu" />
             </Navbar>
             <h1>Hola Admininistrador </h1>
         </div>

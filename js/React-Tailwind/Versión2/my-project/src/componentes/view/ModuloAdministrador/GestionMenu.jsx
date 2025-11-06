@@ -2,7 +2,8 @@ import React from "react";
 import Navbar from "../../NavBar";
 import CustomLink from "../../CustomLink";
 
-const GestionUsuario = () =>{
+
+const GestionMenu = () =>{
     return(
         <div className="bg-white text-black">
             {/* Componente NavBar */}
@@ -23,8 +24,8 @@ const GestionUsuario = () =>{
                 <CustomLink to="/GestionCanciones" text="Canciones" />
                 <CustomLink to="/GestionMenu" text="Menu" />
             </Navbar>
-            <h1>Gestión Usuario</h1>
+            <h1>Gestión Menu</h1>
         </div>
     )
 }
-export default GestionUsuario;
+export default GestionMenu;

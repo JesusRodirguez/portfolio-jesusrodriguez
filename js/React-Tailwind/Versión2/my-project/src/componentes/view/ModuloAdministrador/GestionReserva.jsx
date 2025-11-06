@@ -21,6 +21,7 @@ const GestionReserva = () =>{
                 <CustomLink to="/GestionVentas" text="Ventas" />
                 <CustomLink to="/GestionInventario" text="Inventario" />
                 <CustomLink to="/GestionCanciones" text="Canciones" />
+                <CustomLink to="/GestionMenu" text="Menu" />
             </Navbar>
             <h1>Gestión Reserva</h1>
         </div>
