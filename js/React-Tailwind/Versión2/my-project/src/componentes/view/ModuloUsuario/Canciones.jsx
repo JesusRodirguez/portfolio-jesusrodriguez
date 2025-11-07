@@ -86,7 +86,7 @@ const Canciones = () => {
         <div className="flex gap-4">
           <Button
             onClick={buscarCanciones}
-            ClassName="bg-indigo-600 hover:bg-indigo-700 transition-all px-6 py-2 rounded-lg font-semibold text-white"
+            ClassName="bg-red-700 hover:bg-indigo-700 transition-all px-6 py-2 rounded-lg font-semibold text-white"
             texto="Buscar en Yutube"
           />
 

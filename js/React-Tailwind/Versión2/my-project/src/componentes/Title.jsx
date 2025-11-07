@@ -2,7 +2,7 @@ import React from "react";
 import '../index.css'
 
 
-const Title = ({ texto, class: ClassName="" }) => {
+const Title = ({ texto="", ClassName="" }) => {
     return (
         <div>
             <h1 className={ClassName}>{texto}</h1>

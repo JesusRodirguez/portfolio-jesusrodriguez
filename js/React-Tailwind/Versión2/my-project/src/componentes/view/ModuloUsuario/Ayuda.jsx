@@ -1,6 +1,7 @@
 import React from "react";
 import Navbar from "../../NavBar";
 import CustomLink from "../../CustomLink";
+import Footer, { LinkNormal, LinkIconos } from "../../Fotter";
 
 
 
@@ -23,7 +24,26 @@ const Ayuda = () =>{
                 <CustomLink to="/AboutUs" text="About us" />
                 <CustomLink to="/Ayuda" text="Ayuda" />
             </Navbar>
-            <h1>Chat Bots</h1>
+            <h1 className="text-3xl font-bold mb-2 text-center">Chat Bots</h1>
+            
+            {/* Componente Footer */}
+            <Footer
+            id="contact"
+            className="flex flex-col items-center w-full bg-black text-white px-14 py-14 gap-6 mt-20"
+            title="Contáctanos"
+            >
+            <div className="flex flex-col md:flex-row gap-6 md:gap-10 items-center text-lg">
+                <LinkNormal href="tel:+573001234567" texto="+57 300 123 4567" />
+                <LinkNormal href="mailto:contacto@ejemplo.com" texto="contacto@ejemplo.com" />
+                <LinkIconos href="https://facebook.com/tupagina" texto="Facebook" />
+                <LinkIconos href="https://tiktok.com/@tuusuario" texto="TikTok" />
+            </div>
+
+            <div className="w-full border-t border-gray-700 my-4"></div>
+            <div className="text-center text-sm text-gray-400">
+                © 2025 MidnightCode — Todos los derechos reservados.
+            </div>
+            </Footer>
         </div>
     )
 }
