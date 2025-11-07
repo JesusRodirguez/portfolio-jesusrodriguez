@@ -17,7 +17,7 @@ const InPut = ({
     <div className="mb-4">
       <label htmlFor={id} className="">
         {texto}
-      </label>
+      </label><br />
       <input
         type={type}
         name={name}
