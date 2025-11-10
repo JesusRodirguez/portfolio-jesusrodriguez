@@ -1,6 +1,5 @@
-// app/layout.tsx
 import type { Metadata } from "next";
-import "tailwindcss"
+import "../styles/Tailwind.css";
 
 export const metadata: Metadata = {
   title: "Midnight Cup",
@@ -14,9 +13,7 @@ export default function RootLayout({
 }) {
   return (
     <html lang="es">
-      <body className="min-h-screen bg-black text-white">
-        {children}
-      </body>
+      <body className="min-h-screen bg-white text-black">{children}</body>
     </html>
   );
 }

@@ -1,58 +1,72 @@
 "use client";
-
 import React from "react";
+import Link from "next/link";
 import "../styles/Tailwind.css";
 
 // COMPONENTES
 import Navbar from "@/componentes/NavBar";
+import CustomLink from "@/componentes/CustomLink";
 import Carrucel from "@/componentes/Swiper";
 import AboutSection from "@/componentes/AboutSection";
 import CardCaracteristica from "@/componentes/CardCaracteristica";
 import Footer from "@/componentes/Footer";
-
 import { SwiperSlide } from "swiper/react";
+
+// Login y Registro
+import Login from "./login/page";
+import Registro from "./Registro/page";
 
 export default function Page() {
   return (
     <div className="bg-white text-black min-h-screen flex flex-col">
 
-      {/* NAVBAR */}
+      {/*  Componente NavBar */}
       <Navbar
         ClassHeader="w-full flex flex-col md:flex-row items-center justify-between bg-white text-black py-4 px-6 border-b border-gray-300"
         ClassH1="text-2xl md:text-3xl font-bold mb-2 md:mb-0 text-center md:text-left"
         TextoH1="MidnightCode"
         ClassUl="flex flex-wrap justify-center md:justify-end gap-4 md:gap-8"
       >
-        <li>Home</li>
-        <li>Eventos</li>
-        <li>Menu</li>
-        <li>Reservas</li>
-        <li>Canciones</li>
-        <li>About us</li>
-        <li>Ayuda</li>
+        {/*  componnete  */}
+        <CustomLink href="/" textA="Home" />
+        <CustomLink href="#nosotros" textA="About us" />
+        <CustomLink href="#footer" textA="Contact us" />
+        <CustomLink href="/login" textA="Login" />
+        <CustomLink href="/Registro" textA="Registro" />
       </Navbar>
 
-      {/* CARRUCEL */}
+      {/*  Componente Carrucel */}
       <Carrucel
         ClassSection="w-full"
-        Modules={[/* Autoplay y EffectFade ya vienen por defecto */]}
         Effect="fade"
         Loop={true}
         AutoPlay={{ delay: 3000, disableOnInteraction: false }}
         ClassSwiper="w-full h-[400px] md:h-[500px]"
       >
         <SwiperSlide>
-          <img src="/img/slide1.jpg" alt="Evento principal" className="w-full h-full object-cover"/>
+          <img
+            src="/img/slide1.jpg"
+            alt="Evento principal"
+            className="w-full h-full object-cover"
+          />
         </SwiperSlide>
         <SwiperSlide>
-          <img src="/img/slide2.jpg" alt="Ambiente nocturno" className="w-full h-full object-cover"/>
+          <img
+            src="/img/slide2.jpg"
+            alt="Ambiente nocturno"
+            className="w-full h-full object-cover"
+          />
         </SwiperSlide>
         <SwiperSlide>
-          <img src="/img/slide3.jpg" alt="DJ en acción" className="w-full h-full object-cover"/>
+          <img
+            src="/img/slide3.jpg"
+            alt="DJ en acción"
+            className="w-full h-full object-cover"
+          />
         </SwiperSlide>
       </Carrucel>
 
-      {/* ABOUT SECTION */}
+      {/*  Sección “Sobre Nosotros” */}
       <AboutSection
         id="nosotros"
         classSection="py-16 px-4 sm:px-8 md:px-12 lg:px-20 text-center md:text-left"
@@ -62,7 +76,7 @@ export default function Page() {
         textP="MidnightCode es un espacio donde la creatividad, la música y la tecnología se unen para crear experiencias inolvidables. Nos apasiona conectar la energía de la noche con la innovación digital."
       />
 
-      {/* CARACTERÍSTICAS */}
+      {/*  Sección de Características */}
       <section className="py-16 px-6 sm:px-10 lg:px-20 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8 text-center">
         <CardCaracteristica
           classNameDiv="bg-gray-100 p-6 rounded-xl shadow-md hover:bg-gray-200 transition"
@@ -87,7 +101,7 @@ export default function Page() {
         />
       </section>
 
-      {/* FOOTER */}
+      {/*  Componente Footer */}
       <Footer
         id="footer"
         classNameFooter="bg-black text-white py-10 px-4 sm:px-10 lg:px-20 text-center"
@@ -98,7 +112,6 @@ export default function Page() {
           © {new Date().getFullYear()} MidnightCode — Todos los derechos reservados.
         </p>
       </Footer>
-
     </div>
   );
 }

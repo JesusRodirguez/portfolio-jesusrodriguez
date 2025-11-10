@@ -45,7 +45,6 @@ const Canciones = () => {
     setCancionesGuardadas(actualizadas);
     setCanciones(actualizadas);
     localStorage.setItem("canciones", JSON.stringify(actualizadas));
-    alert("Canción guardada mi brother ");
   };
   // elimar cancion
   const eliminarCancion = (id) => {

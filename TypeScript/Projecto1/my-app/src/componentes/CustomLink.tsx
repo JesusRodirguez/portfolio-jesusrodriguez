@@ -1,20 +1,16 @@
 import React from "react";
-import { Link } from "react-router-dom"; 
+import Link from "next/link";
 
 type CustomLinkProps = {
-  to?: string;
+  href?: string;
   classNameA?: string;
   textA?: string;
 };
 
-const CustomLink: React.FC<CustomLinkProps> = ({
-  to = "",
-  classNameA = "",
-  textA = "",
-}) => {
+const CustomLink: React.FC<CustomLinkProps> = ({ href = "", classNameA = "", textA = "" }) => {
   return (
     <li>
-      <Link to={to} className={classNameA}>
+      <Link href={href} className={classNameA}>
         {textA}
       </Link>
     </li>
@@ -22,3 +18,4 @@ const CustomLink: React.FC<CustomLinkProps> = ({
 };
 
 export default CustomLink;
+  

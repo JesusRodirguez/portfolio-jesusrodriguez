@@ -22,7 +22,6 @@ const Login = () => {
     }
     // validacion de que no este vacio los campos
     if (formData.correo === "usuario@gmail.com" && formData.contraseña === "12345") {
-      alert("Inicio de sesión exitoso ");
       navigate("/pagina-principal");
     }
     else if (formData.correo === "admin@gmail.com" && formData.contraseña === "12345"){
