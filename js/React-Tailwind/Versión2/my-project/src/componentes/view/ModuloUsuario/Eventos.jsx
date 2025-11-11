@@ -4,8 +4,9 @@ import CustomLink from "../../CustomLink";
 import Title from "../../Title";
 
 const Eventos = () => {
-  // Eventos de ejemplo provicionales
-  const eventosEjemplo = [
+const eventosGuardados = JSON.parse(localStorage.getItem("eventos")) || [];
+
+  const eventosEjemplo = eventosGuardados.length > 0 ? eventosGuardados : [
     {
       id: 1,
       fecha: "2025-11-10",
@@ -17,14 +18,14 @@ const Eventos = () => {
       id: 2,
       fecha: "2025-11-15",
       titulo: "Reggaeton Night",
-      descripcion: "Perreo intenso hasta las 4am ",
+      descripcion: "Perreo intenso hasta las 4am",
       autor: "DJ Flow",
     },
     {
       id: 3,
       fecha: "2025-11-15",
       titulo: "Sexy Party",
-      descripcion: "Ambiente sensual con luces y humo ",
+      descripcion: "Ambiente sensual con luces y humo",
       autor: "DJ Venus",
     },
   ];
