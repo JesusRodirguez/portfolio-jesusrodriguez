@@ -4,22 +4,41 @@ import CustomLink from "../../CustomLink";
 import { ShoppingCart, X } from "lucide-react";
 
 const Menu = () => {
-  const [licores, setLicores] = useState([
-    { id: 1, nombre: "Whisky Midnight Gold", precio: 180000, stock: 12, imagen: "/img/licor1.webp" },
-    { id: 2, nombre: "Ron Oscuro Eclipse", precio: 95000, stock: 20, imagen: "/img/licor2.webp" },
-    { id: 3, nombre: "Vodka Polar Ice", precio: 80000, stock: 15, imagen: "/img/licor3.webp" },
-    { id: 4, nombre: "Gin Cítrico Aurora", precio: 120000, stock: 8, imagen: "/img/licor4.webp" },
-  ]);
-
+  const [licores, setLicores] = useState([]);
   const [carrito, setCarrito] = useState([]);
   const [mostrarCarrito, setMostrarCarrito] = useState(false);
   const [tiempoRestante, setTiempoRestante] = useState(null);
   const timerRef = useRef(null);
 
+  // Carga los productos disponibles del inventario
+  useEffect(() => {
+    const productos = JSON.parse(localStorage.getItem("productosInventario")) || [];
+    const disponibles = productos.filter((p) => p.disponible);
+    // Creamos stockVisible para manejar la cantidad que se puede seleccionar
+    const visibles = disponibles.map((p) => ({
+      ...p,
+      stockVisible: p.cantidadPublica ?? p.stock,
+      cantidadSeleccionada: 1 // inicializamos con 1
+    }));
+    setLicores(visibles);
+  }, []);
+
+  // Actualizar cantidad seleccionada por el usuario
+  const cambiarCantidad = (id, cantidad) => {
+    setLicores(
+      licores.map((item) =>
+        item.id === id
+          ? { ...item, cantidadSeleccionada: cantidad }
+          : item
+      )
+    );
+  };
+
   // Agregar producto al carrito
   const agregarAlCarrito = (licor) => {
-    if (licor.stock <= 0) {
-      alert("No hay más stock disponible de este producto.");
+    const cantidad = licor.cantidadSeleccionada;
+    if (licor.stockVisible < cantidad) {
+      alert("No hay suficiente stock disponible de este producto.");
       return;
     }
 
@@ -27,18 +46,22 @@ const Menu = () => {
     if (existe) {
       setCarrito(
         carrito.map((item) =>
-          item.id === licor.id ? { ...item, cantidad: item.cantidad + 1 } : item
+          item.id === licor.id
+            ? { ...item, cantidad: item.cantidad + cantidad }
+            : item
         )
       );
     } else {
-      setCarrito([...carrito, { ...licor, cantidad: 1 }]);
+      setCarrito([...carrito, { ...licor, cantidad }]);
       if (!timerRef.current) iniciarTemporizador();
     }
 
-    // Restar stock
+    // Restar stock visible
     setLicores(
       licores.map((item) =>
-        item.id === licor.id ? { ...item, stock: item.stock - 1 } : item
+        item.id === licor.id
+          ? { ...item, stockVisible: item.stockVisible - cantidad }
+          : item
       )
     );
   };
@@ -48,11 +71,11 @@ const Menu = () => {
     const producto = carrito.find((item) => item.id === id);
     if (!producto) return;
 
-    // Regresar stock
+    // Regresar stock visible
     setLicores(
       licores.map((item) =>
         item.id === id
-          ? { ...item, stock: item.stock + producto.cantidad }
+          ? { ...item, stockVisible: item.stockVisible + producto.cantidad }
           : item
       )
     );
@@ -60,9 +83,9 @@ const Menu = () => {
     setCarrito(carrito.filter((item) => item.id !== id));
   };
 
-  // Iniciar el temporizador de 15 minutos (900 segundos)
+  // Iniciar el temporizador de 15 minutos
   const iniciarTemporizador = () => {
-    setTiempoRestante(900); // 15 minutos en segundos
+    setTiempoRestante(900);
 
     timerRef.current = setInterval(() => {
       setTiempoRestante((prev) => {
@@ -77,14 +100,13 @@ const Menu = () => {
     }, 1000);
   };
 
-  // Liberar el carrito y restaurar stock
   const liberarCarrito = () => {
     if (carrito.length > 0) {
       setLicores((prev) =>
         prev.map((licor) => {
           const productoCarrito = carrito.find((p) => p.id === licor.id);
           return productoCarrito
-            ? { ...licor, stock: licor.stock + productoCarrito.cantidad }
+            ? { ...licor, stockVisible: licor.stockVisible + productoCarrito.cantidad }
             : licor;
         })
       );
@@ -93,7 +115,6 @@ const Menu = () => {
     }
   };
 
-  // Mostrar el tiempo en formato mm:ss
   const formatearTiempo = (segundos) => {
     const minutos = Math.floor(segundos / 60);
     const seg = segundos % 60;
@@ -102,14 +123,13 @@ const Menu = () => {
       .padStart(2, "0")}`;
   };
 
-  // Limpiar intervalo al salir del componente
   useEffect(() => {
     return () => clearInterval(timerRef.current);
   }, []);
 
   return (
     <div className="bg-white text-black min-h-screen relative">
-      {/* Componenete Navbar */}
+      {/* Navbar */}
       <Navbar
         ClassHeader="w-screen flex flex-col items-center justify-center bg-white text-black py-4 border-b border-gray-300"
         ClassH1="text-3xl font-bold mb-2 text-center"
@@ -126,10 +146,8 @@ const Menu = () => {
         <CustomLink to="/Ayuda" text="Ayuda" />
       </Navbar>
 
-      {/* Título */}
       <h1 className="text-4xl font-bold text-center mt-10 mb-8">Menú de Licores</h1>
 
-      {/* Contenedor de productos */}
       <div className="grid sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-8 px-10 pb-20">
         {licores.map((licor) => (
           <div
@@ -143,7 +161,17 @@ const Menu = () => {
             />
             <h3 className="text-xl font-semibold mb-2">{licor.nombre}</h3>
             <p className="text-gray-700">Precio: ${licor.precio.toLocaleString()}</p>
-            <p className="text-gray-600 mb-4">Stock: {licor.stock}</p>
+            <p className="text-gray-600 mb-2">Stock disponible: {licor.stockVisible}</p>
+            <div className="mb-4">
+              <input
+                type="number"
+                min="1"
+                max={licor.stockVisible}
+                value={licor.cantidadSeleccionada}
+                onChange={(e) => cambiarCantidad(licor.id, Math.min(Math.max(1, parseInt(e.target.value) || 1), licor.stockVisible))}
+                className="w-full border border-gray-300 rounded-xl py-1 px-2"
+              />
+            </div>
             <button
               onClick={() => agregarAlCarrito(licor)}
               className="w-full bg-green-600 text-white py-2 rounded-xl font-semibold hover:bg-green-700 transition-all"
@@ -154,7 +182,7 @@ const Menu = () => {
         ))}
       </div>
 
-      {/* Botón del carrito (verde) */}
+      {/* Botón carrito */}
       <button
         onClick={() => setMostrarCarrito(!mostrarCarrito)}
         className="fixed top-6 right-6 bg-green-600 hover:bg-green-700 text-white p-4 rounded-full shadow-lg transition-all"
@@ -181,9 +209,7 @@ const Menu = () => {
           </div>
 
           {carrito.length === 0 ? (
-            <p className="text-gray-600 text-center mt-20">
-              No hay productos en el carrito.
-            </p>
+            <p className="text-gray-600 text-center mt-20">No hay productos en el carrito.</p>
           ) : (
             <>
               {tiempoRestante !== null && (
@@ -207,18 +233,13 @@ const Menu = () => {
                     </button>
                   </div>
                   <p className="text-sm text-gray-700">Cantidad: {item.cantidad}</p>
-                  <p className="text-sm text-gray-700">
-                    Subtotal: ${(item.precio * item.cantidad).toLocaleString()}
-                  </p>
+                  <p className="text-sm text-gray-700">Subtotal: ${(item.precio * item.cantidad).toLocaleString()}</p>
                 </div>
               ))}
 
               <hr className="my-4" />
               <p className="text-lg font-semibold text-center">
-                Total:{" "}
-                {carrito
-                  .reduce((acc, item) => acc + item.precio * item.cantidad, 0)
-                  .toLocaleString()}
+                Total: {carrito.reduce((acc, item) => acc + item.precio * item.cantidad, 0).toLocaleString()}
               </p>
 
               <button className="mt-6 w-full bg-green-600 hover:bg-green-700 text-white py-2 rounded-xl font-semibold transition-all">
