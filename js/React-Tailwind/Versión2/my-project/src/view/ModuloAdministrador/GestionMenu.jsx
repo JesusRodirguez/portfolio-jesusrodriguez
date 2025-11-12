@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
-import Navbar from "../../NavBar"; // Componente Navbar
-import CustomLink from "../../CustomLink"; // Componente para enlaces personalizados
+import Navbar from "../../componentes/NavBar";
+import CustomLink from "../../componentes/CustomLink";
 
 const GestionMenu = () => {
   // Estado que guarda todos los productos del inventario

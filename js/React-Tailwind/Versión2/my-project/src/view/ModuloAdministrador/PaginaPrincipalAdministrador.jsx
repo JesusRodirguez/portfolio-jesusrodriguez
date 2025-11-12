@@ -1,6 +1,6 @@
 import React from "react";
-import Navbar from "../../NavBar";
-import CustomLink from "../../CustomLink";
+import Navbar from "../../componentes/NavBar";
+import CustomLink from "../../componentes/CustomLink";
 
 const PaginaPrincipalAdministrador = () =>{
     return(
@@ -23,7 +23,7 @@ const PaginaPrincipalAdministrador = () =>{
                 <CustomLink to="/GestionCanciones" text="Canciones" />
                 <CustomLink to="/GestionCanciones" text="Menu" />
             </Navbar>
-            <h1>Hola Admininistrador </h1>
+            <h1 className="text-4xl font-bold mb-8 text-center">Bienvenido Administrador</h1>
         </div>
     )
 }

@@ -1,7 +1,7 @@
 import React, { useState } from "react";
-import Navbar from "../../NavBar";
-import CustomLink from "../../CustomLink";
-import InPut from "../../InPut"; // Tu componente de input personalizado
+import InPut from "../../componentes/InPut";
+import Navbar from "../../componentes/NavBar";
+import CustomLink from "../../componentes/CustomLink";
 
 const Reservas = () => {
   // Disponibilidades iniciales

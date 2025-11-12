@@ -1,8 +1,8 @@
 import React, { useState, useEffect } from "react";
-import Navbar from "../../NavBar";
-import CustomLink from "../../CustomLink";
-import Button from "../../Butomm";
-import InPut from "../../InPut";
+import Navbar from "../../componentes/NavBar";
+import CustomLink from "../../componentes/CustomLink";
+import Button from "../../componentes/Butomm";
+import InPut from "../../componentes/InPut";
 
 const GestionCanciones = () => {
   const [canciones, setCanciones] = useState([]);

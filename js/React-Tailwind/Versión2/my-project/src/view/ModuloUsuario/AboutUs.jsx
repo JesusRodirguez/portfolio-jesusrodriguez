@@ -1,8 +1,8 @@
 import React from "react";
-import Navbar from "../../NavBar";
-import CustomLink from "../../CustomLink";
-import AboutSection from "../../SectionPrincipal";
-import CardCaracteristica from "../../CardCaracteristica";
+import Navbar from "../../componentes/NavBar";
+import CustomLink from "../../componentes/CustomLink";
+import AboutSection from "../../componentes/SectionPrincipal";
+import CardCaracteristica from "../../componentes/CardCaracteristica";
 
 const AboutUs = () => {
     return(

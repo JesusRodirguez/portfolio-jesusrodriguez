@@ -1,8 +1,8 @@
 import React, { useState, useEffect } from "react";
-import Navbar from "../../NavBar"; // Componente Navbar
-import CustomLink from "../../CustomLink"; // Componente de enlaces personalizados
-import InPut from "../../InPut"; // Componente Input personalizado
-import Button from "../../Butomm"; // Componente Button personalizado
+import Navbar from "../../componentes/NavBar";
+import CustomLink from "../../componentes/CustomLink"; // Componente Button personalizado
+import Button from "../../componentes/Butomm";
+import InPut from "../../componentes/InPut";
 
 const GestionInventario = () => {
   // Estado que almacena todos los productos del inventario

@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
-import Navbar from "../../NavBar";
-import CustomLink from "../../CustomLink";
+import Navbar from "../../componentes/NavBar";
+import CustomLink from "../../componentes/CustomLink";
 
 const GestionUsuario = () => {
   const [usuarios, setUsuarios] = useState([]);

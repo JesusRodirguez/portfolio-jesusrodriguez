@@ -1,93 +1,95 @@
 import React, { useState, useEffect } from "react";
-import Navbar from "../../NavBar";
-import CustomLink from "../../CustomLink";
+import Navbar from "../../componentes/NavBar";
+import CustomLink from "../../componentes/CustomLink";
 
-const GestionHorario = () => {
-  const [horarios, setHorarios] = useState([]);
-  const [horarioActual, setHorarioActual] = useState({
+const GestionVentas = () => {
+  const [ventas, setVentas] = useState([]);
+  const [ventaActual, setVentaActual] = useState({
     id: "",
-    dia: "",
-    horaInicio: "",
-    horaFin: "",
+    producto: "",
+    cantidad: "",
+    precio: "",
     empleado: "",
   });
   const [editando, setEditando] = useState(false);
   const [busqueda, setBusqueda] = useState("");
 
-  // Cargar horarios guardados
+  // Cargar ventas guardadas
   useEffect(() => {
-    const guardados = JSON.parse(localStorage.getItem("horarios")) || [];
-    setHorarios(guardados);
+    const guardadas = JSON.parse(localStorage.getItem("ventas")) || [];
+    setVentas(guardadas);
   }, []);
 
-  // Guardar cambios en localStorage
+  // Guardar ventas en localStorage
   useEffect(() => {
-    localStorage.setItem("horarios", JSON.stringify(horarios));
-  }, [horarios]);
+    localStorage.setItem("ventas", JSON.stringify(ventas));
+  }, [ventas]);
 
-  // Manejar cambios de inputs
+  // Manejar inputs
   const handleChange = (e) => {
     const { name, value } = e.target;
-    setHorarioActual((prev) => ({ ...prev, [name]: value }));
+    setVentaActual((prev) => ({ ...prev, [name]: value }));
   };
 
-  // Agregar horario
-  const agregarHorario = (e) => {
+  // Agregar nueva venta
+  const agregarVenta = (e) => {
     e.preventDefault();
-    if (!horarioActual.dia || !horarioActual.horaInicio || !horarioActual.horaFin) {
+    if (!ventaActual.producto || !ventaActual.cantidad || !ventaActual.precio) {
       alert("Por favor completa todos los campos obligatorios.");
       return;
     }
 
-    const nuevo = {
-      ...horarioActual,
+    const nueva = {
+      ...ventaActual,
       id: Date.now(),
+      fecha: new Date().toLocaleDateString(),
     };
-    setHorarios([...horarios, nuevo]);
+
+    setVentas([...ventas, nueva]);
     limpiarFormulario();
   };
 
-  // Editar horario
-  const iniciarEdicion = (horario) => {
-    setHorarioActual(horario);
+  // Editar venta
+  const iniciarEdicion = (venta) => {
+    setVentaActual(venta);
     setEditando(true);
   };
 
   const guardarEdicion = (e) => {
     e.preventDefault();
-    const actualizados = horarios.map((h) =>
-      h.id === horarioActual.id ? horarioActual : h
+    const actualizadas = ventas.map((v) =>
+      v.id === ventaActual.id ? ventaActual : v
     );
-    setHorarios(actualizados);
+    setVentas(actualizadas);
     setEditando(false);
     limpiarFormulario();
   };
 
-  // Eliminar horario
-  const eliminarHorario = (id) => {
-    const confirmacion = window.confirm("¿Deseas eliminar este horario?");
+  // Eliminar venta
+  const eliminarVenta = (id) => {
+    const confirmacion = window.confirm("¿Deseas eliminar esta venta?");
     if (confirmacion) {
-      const filtrados = horarios.filter((h) => h.id !== id);
-      setHorarios(filtrados);
+      const filtradas = ventas.filter((v) => v.id !== id);
+      setVentas(filtradas);
     }
   };
 
   // Limpiar formulario
   const limpiarFormulario = () => {
-    setHorarioActual({
+    setVentaActual({
       id: "",
-      dia: "",
-      horaInicio: "",
-      horaFin: "",
+      producto: "",
+      cantidad: "",
+      precio: "",
       empleado: "",
     });
   };
 
-  // Filtrar horarios
-  const horariosFiltrados = horarios.filter(
-    (h) =>
-      h.dia.toLowerCase().includes(busqueda.toLowerCase()) ||
-      h.empleado.toLowerCase().includes(busqueda.toLowerCase())
+  // Filtrar ventas
+  const ventasFiltradas = ventas.filter(
+    (v) =>
+      v.producto.toLowerCase().includes(busqueda.toLowerCase()) ||
+      v.empleado.toLowerCase().includes(busqueda.toLowerCase())
   );
 
   return (
@@ -113,54 +115,56 @@ const GestionHorario = () => {
 
       {/* Contenedor principal */}
       <div className="max-w-6xl mx-auto py-10">
-        <h1 className="text-4xl font-bold mb-8 text-center">Gestión de Horarios</h1>
+        <h1 className="text-4xl font-bold mb-8 text-center">Gestión de Ventas</h1>
 
         {/* Buscador */}
         <div className="mb-6 text-center">
           <input
             type="text"
-            placeholder="Buscar por día o empleado..."
+            placeholder="Buscar por producto o empleado..."
             value={busqueda}
             onChange={(e) => setBusqueda(e.target.value)}
             className="border p-2 rounded-lg w-80 focus:outline-none focus:ring-2 focus:ring-indigo-500"
           />
         </div>
 
-        {/* Formulario */}
+        {/* Formulario de registro / edición */}
         <form
-          onSubmit={editando ? guardarEdicion : agregarHorario}
+          onSubmit={editando ? guardarEdicion : agregarVenta}
           className="bg-gray-100 p-6 rounded-2xl shadow-md mb-10"
         >
-          <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-4">
+          <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4">
             <input
               type="text"
-              name="dia"
-              value={horarioActual.dia}
+              name="producto"
+              value={ventaActual.producto}
               onChange={handleChange}
-              placeholder="Día (Ej: Lunes)"
+              placeholder="Producto"
               className="border p-2 rounded-lg focus:outline-none focus:ring-2 focus:ring-indigo-500"
               required
             />
             <input
-              type="time"
-              name="horaInicio"
-              value={horarioActual.horaInicio}
+              type="number"
+              name="cantidad"
+              value={ventaActual.cantidad}
               onChange={handleChange}
+              placeholder="Cantidad"
               className="border p-2 rounded-lg focus:outline-none focus:ring-2 focus:ring-indigo-500"
               required
             />
             <input
-              type="time"
-              name="horaFin"
-              value={horarioActual.horaFin}
+              type="number"
+              name="precio"
+              value={ventaActual.precio}
               onChange={handleChange}
+              placeholder="Precio"
               className="border p-2 rounded-lg focus:outline-none focus:ring-2 focus:ring-indigo-500"
               required
             />
             <input
               type="text"
               name="empleado"
-              value={horarioActual.empleado}
+              value={ventaActual.empleado}
               onChange={handleChange}
               placeholder="Empleado (opcional)"
               className="border p-2 rounded-lg focus:outline-none focus:ring-2 focus:ring-indigo-500"
@@ -172,7 +176,7 @@ const GestionHorario = () => {
               type="submit"
               className="bg-green-600 hover:bg-green-700 text-white px-4 py-2 rounded cursor-pointer transition-all"
             >
-              {editando ? "Guardar Cambios" : "Registrar Horario"}
+              {editando ? "Guardar Cambios" : "Registrar Venta"}
             </button>
             {editando && (
               <button
@@ -189,35 +193,40 @@ const GestionHorario = () => {
           </div>
         </form>
 
-        {/* Tabla de horarios */}
+        {/* Tabla de ventas */}
         <div className="overflow-x-auto">
           <table className="w-full border border-gray-300 rounded-xl overflow-hidden">
             <thead className="bg-black text-white">
               <tr>
-                <th className="p-3 text-left">Día</th>
-                <th className="p-3 text-left">Hora Inicio</th>
-                <th className="p-3 text-left">Hora Fin</th>
+                <th className="p-3 text-left">Producto</th>
+                <th className="p-3 text-left">Cantidad</th>
+                <th className="p-3 text-left">Precio</th>
                 <th className="p-3 text-left">Empleado</th>
+                <th className="p-3 text-left">Fecha</th>
                 <th className="p-3 text-center">Acciones</th>
               </tr>
             </thead>
             <tbody>
-              {horariosFiltrados.length > 0 ? (
-                horariosFiltrados.map((horario) => (
-                  <tr key={horario.id} className="border-b hover:bg-gray-100 transition-all">
-                    <td className="p-3">{horario.dia}</td>
-                    <td className="p-3">{horario.horaInicio}</td>
-                    <td className="p-3">{horario.horaFin}</td>
-                    <td className="p-3">{horario.empleado || "N/A"}</td>
+              {ventasFiltradas.length > 0 ? (
+                ventasFiltradas.map((venta) => (
+                  <tr
+                    key={venta.id}
+                    className="border-b hover:bg-gray-100 transition-all"
+                  >
+                    <td className="p-3">{venta.producto}</td>
+                    <td className="p-3">{venta.cantidad}</td>
+                    <td className="p-3">${venta.precio}</td>
+                    <td className="p-3">{venta.empleado || "N/A"}</td>
+                    <td className="p-3">{venta.fecha}</td>
                     <td className="p-3 flex justify-center gap-2">
                       <button
-                        onClick={() => iniciarEdicion(horario)}
+                        onClick={() => iniciarEdicion(venta)}
                         className="bg-yellow-500 hover:bg-yellow-600 text-white px-4 py-2 rounded cursor-pointer transition-all"
                       >
                         Editar
                       </button>
                       <button
-                        onClick={() => eliminarHorario(horario.id)}
+                        onClick={() => eliminarVenta(venta.id)}
                         className="bg-red-600 hover:bg-red-700 text-white px-4 py-2 rounded cursor-pointer transition-all"
                       >
                         Eliminar
@@ -227,8 +236,11 @@ const GestionHorario = () => {
                 ))
               ) : (
                 <tr>
-                  <td colSpan="5" className="text-center text-gray-500 py-6 italic">
-                    No hay horarios registrados
+                  <td
+                    colSpan="6"
+                    className="text-center text-gray-500 py-6 italic"
+                  >
+                    No hay ventas registradas
                   </td>
                 </tr>
               )}
@@ -240,4 +252,4 @@ const GestionHorario = () => {
   );
 };
 
-export default GestionHorario;
+export default GestionVentas;

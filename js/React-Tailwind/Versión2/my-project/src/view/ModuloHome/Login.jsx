@@ -1,8 +1,8 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
-import Title from "../../Title";
-import InPut from "../../InPut";
-import Button from "../../Butomm";
+import Title from "../../componentes/Title";
+import InPut from "../../componentes/InPut";
+import Button from "../../componentes/Butomm";
 
 const Login = () => {
   const navigate = useNavigate();
@@ -23,6 +23,9 @@ const Login = () => {
     // validacion de que no este vacio los campos
     if (formData.correo === "usuario@gmail.com" && formData.contraseña === "12345") {
       navigate("/pagina-principal");
+    }
+    else if (formData.correo === "empleado@gmail.com" && formData.contraseña === "12345"){
+      navigate("/PaginaPrincipalEmpleado")
     }
     else if (formData.correo === "admin@gmail.com" && formData.contraseña === "12345"){
       navigate("/PaginaPrincipalAdministrador")

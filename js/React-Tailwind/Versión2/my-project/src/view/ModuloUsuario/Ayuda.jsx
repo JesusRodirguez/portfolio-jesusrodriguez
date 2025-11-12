@@ -1,7 +1,7 @@
 import React from "react";
-import Navbar from "../../NavBar";
-import CustomLink from "../../CustomLink";
-import Footer, { LinkNormal, LinkIconos } from "../../Fotter";
+import Navbar from "../../componentes/NavBar";
+import CustomLink from "../../componentes/CustomLink";
+import Footer,{ LinkNormal, LinkIconos } from "../../componentes/Fotter";
 
 
 

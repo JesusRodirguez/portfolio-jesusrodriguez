@@ -1,11 +1,11 @@
 import React from "react";
-import CustomLink from "../../CustomLink";
-import Carrucel from "../../Swiper";
+import CustomLink from "../../componentes/CustomLink";
+import Carrucel from "../../componentes/Swiper";
 import { SwiperSlide } from "swiper/react";
 import { Autoplay, EffectFade } from "swiper/modules";
-import Navbar from "../../NavBar";
-import CardCaracteristica from "../../CardCaracteristica";
-import AboutSection from "../../SectionPrincipal";
+import Navbar from "../../componentes/NavBar";
+import CardCaracteristica from "../../componentes/CardCaracteristica";
+import AboutSection from "../../componentes/SectionPrincipal";
 
 const PaginaPrincipal = () => {
   return (

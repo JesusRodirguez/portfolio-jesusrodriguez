@@ -16,5 +16,3 @@ const CustomLink = ({ to, text }) => {
 }
 
 export default CustomLink;
-// midu Live 
-// midu dev

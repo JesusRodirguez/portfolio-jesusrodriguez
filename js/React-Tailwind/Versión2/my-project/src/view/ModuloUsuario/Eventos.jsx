@@ -1,7 +1,7 @@
 import React, { useState } from "react";
-import Navbar from "../../NavBar";
-import CustomLink from "../../CustomLink";
-import Title from "../../Title";
+import Navbar from "../../componentes/NavBar";
+import CustomLink from "../../componentes/CustomLink";
+import Title from "../../componentes/Title";
 
 const Eventos = () => {
 const eventosGuardados = JSON.parse(localStorage.getItem("eventos")) || [];

@@ -1,9 +1,9 @@
 import React, { useState } from "react";
-import Navbar from "../../NavBar";
-import CustomLink from "../../CustomLink";
-import Title from "../../Title";
-import InPut from "../../InPut";
-import Button from "../../Butomm";
+import Navbar from "../../componentes/NavBar";
+import CustomLink from "../../componentes/CustomLink";
+import Title from "../../componentes/Title";
+import Button from "../../componentes/Butomm";
+import InPut from "../../componentes/InPut";
 
 // Luego lo vamos ha hacer localStorage
 
