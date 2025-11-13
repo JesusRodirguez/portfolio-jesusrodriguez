@@ -1,73 +1,90 @@
-import React, { useState } from "react";
+import React from "react";
+import { useForm } from "react-hook-form";
+import { yupResolver } from "@hookform/resolvers/yup";
+import * as yup from "yup";
 import { useNavigate } from "react-router-dom";
 import Title from "../../componentes/Title";
 import InPut from "../../componentes/InPut";
 import Button from "../../componentes/Butomm";
 
+
+const schema = yup.object().shape({
+  correo: yup
+    .string()
+    .email("El formato del correo no es válido")
+    .required("Es obligatorio el correo"),
+  contraseña: yup
+    .string()
+    .min(5, "La contraseña debe tener mínimo 5 caracteres")
+    .required("Es obligatorio la contraseña"),
+});
+
 const Login = () => {
   const navigate = useNavigate();
-  // estado del formulario,guarda los datos o actualiza
-  const [formData, setFormData] = useState({ correo: "", contraseña: "" });
-  // actualizar el estado del formulario
-  const handleChange = (e) => {
-    const { name, value } = e.target;
-    setFormData((prev) => ({ ...prev, [name]: value }));
-  };
-  // cargar el estado y hacer como una validacion por el momento
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    if (!formData.correo || !formData.contraseña) {
-      alert("Por favor completa todos los campos");
-      return;
-    }
-    // validacion de que no este vacio los campos
-    if (formData.correo === "usuario@gmail.com" && formData.contraseña === "12345") {
+
+
+  const {
+    register,
+    handleSubmit,
+    formState: { errors },
+  } = useForm({
+    resolver: yupResolver(schema),
+  });
+
+
+  const onSubmit = (data) => {
+    const correo = data.correo.trim();
+    const contraseña = data.contraseña.trim();
+
+    if (correo === "usuario@gmail.com" && contraseña === "12345") {
       navigate("/pagina-principal");
-    }
-    else if (formData.correo === "empleado@gmail.com" && formData.contraseña === "12345"){
-      navigate("/PaginaPrincipalEmpleado")
-    }
-    else if (formData.correo === "admin@gmail.com" && formData.contraseña === "12345"){
-      navigate("/PaginaPrincipalAdministrador")
-    } 
-    else {
-      alert("Incorrectas, Volver a intentar ");
+    } else if (correo === "admin@gmail.com" && contraseña === "12345") {
+      navigate("/PaginaPrincipalAdministrador");
+    } else if (correo === "empleado@gmail.com" && contraseña === "12345") {
+      navigate("/PaginaPrincipalEmpleado");
+    } else {
+      alert("Credenciales incorrectas, vuelve a intentar");
     }
   };
 
   return (
     <div className="flex items-center justify-center h-screen bg-white font-[Inter]">
       <div className="flex w-[90%] max-w-5xl h-[70vh] shadow-lg">
-        
         {/* Lado izquierdo (formulario) */}
         <div className="w-1/2 bg-white flex flex-col justify-center items-center">
           <div className="w-[80%] max-w-sm text-center">
             <h2 className="text-3xl font-bold text-[#7C3AED] mb-2">MidnightCode</h2>
-            {/* Componente Title */}
             <Title texto="Iniciar Sesión" ClassName="text-2xl font-semibold mb-2 text-[#7C3AED]" />
             <p className="text-sm text-gray-500 mb-6">
               Ingresa tus credenciales para continuar
             </p>
 
-            <form onSubmit={handleSubmit} className="space-y-4">
-              {/* Componenete InPut */}
-              <InPut
-                type="email"
-                name="correo"
-                placeholder="Correo electrónico"
-                value={formData.correo}
-                onChange={handleChange}
-                ClassName="w-full border border-gray-300 px-4 py-2 text-sm focus:outline-none focus:border-[#7C3AED]"
-              />
-              
-              <InPut
-                type="password"
-                name="contraseña"
-                placeholder="Contraseña"
-                value={formData.contraseña}
-                onChange={handleChange}
-                ClassName="w-full border border-gray-300 px-4 py-2 text-sm focus:outline-none focus:border-[#7C3AED]"
-              />
+            <form onSubmit={handleSubmit(onSubmit)} className="space-y-4">
+              {/* Campo correo */}
+              <div>
+                <InPut
+                  type="email"
+                  placeholder="Correo electrónico"
+                  {...register("correo")}
+                  className="w-full border border-gray-300 px-4 py-2 text-sm focus:outline-none focus:border-[#7C3AED]"
+                />
+                {errors.correo && (
+                  <p className="text-red-500 text-xs mt-1">{errors.correo.message}</p>
+                )}
+              </div>
+
+              {/* Campo contraseña */}
+              <div>
+                <InPut
+                  type="password"
+                  placeholder="Contraseña"
+                  {...register("contraseña")}
+                  className="w-full border border-gray-300 px-4 py-2 text-sm focus:outline-none focus:border-[#7C3AED]"
+                />
+                {errors.contraseña && (
+                  <p className="text-red-500 text-xs mt-1">{errors.contraseña.message}</p>
+                )}
+              </div>
 
               <div className="flex justify-between text-xs text-gray-500">
                 <label className="flex items-center space-x-1 cursor-pointer">
@@ -76,7 +93,7 @@ const Login = () => {
                 </label>
                 <p className="hover:underline cursor-pointer">¿Olvidaste tu contraseña?</p>
               </div>
-              {/* Componenete Button */}
+
               <Button
                 texto="Iniciar Sesión"
                 type="submit"
@@ -86,11 +103,11 @@ const Login = () => {
           </div>
         </div>
 
-        {/* Imajen */}
+        {/* Imagen lateral */}
         <div
           className="w-1/2 bg-cover bg-center"
           style={{
-            backgroundImage: `url('public/img/fondo.jpg')`, // ajusta si tu imagen está en otra ruta
+            backgroundImage: `url('public/img/fondo.jpg')`,
           }}
         ></div>
       </div>

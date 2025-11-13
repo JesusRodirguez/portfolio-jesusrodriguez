@@ -1,56 +1,62 @@
-import React, { useState } from "react";
+import React from "react";
+import { useForm } from "react-hook-form";
+import { yupResolver } from "@hookform/resolvers/yup";
+import * as yup from "yup";
 import Title from "../../componentes/Title";
 import InPut from "../../componentes/InPut";
 import Button from "../../componentes/Butomm";
 
+
+const schema = yup.object().shape({
+  nombre: yup
+    .string()
+    .required("El nombre es obligatorio")
+    .min(3, "Debe tener al menos 3 caracteres"),
+  telefono: yup
+    .string()
+    .required("El teléfono es obligatorio")
+    .matches(/^[0-9]+$/, "Solo se permiten números")
+    .min(10, "Debe tener al menos 7 dígitos"),
+  correo: yup
+    .string()
+    .required("El correo es obligatorio")
+    .email("Formato de correo inválido"),
+  contraseña: yup
+    .string()
+    .required("La contraseña es obligatoria")
+    .min(12, "Debe tener al menos 12 caracteres")
+    .matches(/[A-Z]/, "Debe contener al menos una letra mayúscula")
+    .matches(/[a-z]/, "Debe contener al menos una letra minúscula")
+    .matches(/[0-9]/, "Debe contener al menos un número")
+    .matches(
+      /[!@#$%^&*(),.?":{}|<>]/,
+      "Debe contener al menos un carácter especial"
+    ),
+});
+
 const Registro = () => {
-  // Estado para los datos del formulario
-  const [formData, setFormData] = useState({
-    nombre: "",
-    telefono: "",
-    correo: "",
-    contraseña: "",
+  const {
+    register,
+    handleSubmit,
+    reset,
+    formState: { errors },
+  } = useForm({
+    resolver: yupResolver(schema),
   });
 
-  // Actualizar los datos del formulario
-  const handleChange = (e) => {
-    const { name, value } = e.target;
-    setFormData((prev) => ({ ...prev, [name]: value }));
-  };
 
-  // Envío del formulario
-  const handleSubmit = (e) => {
-    e.preventDefault();
-
-    // Validación simple
-    if (!formData.nombre || !formData.telefono || !formData.correo || !formData.contraseña) {
-      alert("Por favor completa todos los campos");
-      return;
-    }
-
-    // Obtener usuarios existentes del LocalStorage
+  const onSubmit = (data) => {
     const usuariosGuardados = JSON.parse(localStorage.getItem("usuarios")) || [];
+    localStorage.setItem("usuarios", JSON.stringify([...usuariosGuardados, data]));
 
-    // Agregar el nuevo usuario
-    const nuevosUsuarios = [...usuariosGuardados, formData];
-
-    // Guardar en LocalStorage
-    localStorage.setItem("usuarios", JSON.stringify(nuevosUsuarios));
-
-
-    // Limpiar el formulario
-    setFormData({
-      nombre: "",
-      telefono: "",
-      correo: "",
-      contraseña: "",
-    });window.location.reload()
+    alert(" Registrado exitosamente");
+    reset(); 
+    window.location.reload(); 
   };
 
   return (
     <div className="flex items-center justify-center h-screen bg-white font-[Inter]">
       <div className="flex w-[90%] max-w-5xl h-[70vh] shadow-lg">
-        {/* Lado izquierdo (formulario) */}
         <div className="w-1/2 bg-white flex flex-col justify-center items-center">
           <div className="w-[80%] max-w-sm text-center">
             <h2 className="text-3xl font-bold text-[#7C3AED] mb-2">MidnightCode</h2>
@@ -59,43 +65,60 @@ const Registro = () => {
               Crea tu cuenta para unirte a la experiencia
             </p>
 
-            <form onSubmit={handleSubmit} className="space-y-4">
-              <InPut
-                type="text"
-                name="nombre"
-                placeholder="Nombre completo"
-                value={formData.nombre}
-                onChange={handleChange}
-                ClassName="w-full border border-gray-300 px-4 py-2 text-sm focus:outline-none focus:border-[#7C3AED]"
-              />
+            <form onSubmit={handleSubmit(onSubmit)} className="space-y-4">
+              {/* Nombre */}
+              <div>
+                <InPut
+                  type="text"
+                  placeholder="Nombre completo"
+                  {...register("nombre")}
+                  className="w-full border border-gray-300 px-4 py-2 text-sm focus:outline-none focus:border-[#7C3AED]"
+                />
+                {errors.nombre && (
+                  <p className="text-red-500 text-xs mt-1">{errors.nombre.message}</p>
+                )}
+              </div>
 
-              <InPut
-                type="tel"
-                name="telefono"
-                placeholder="Teléfono"
-                value={formData.telefono}
-                onChange={handleChange}
-                ClassName="w-full border border-gray-300 px-4 py-2 text-sm focus:outline-none focus:border-[#7C3AED]"
-              />
+              {/* Teléfono */}
+              <div>
+                <InPut
+                  type="tel"
+                  placeholder="Teléfono"
+                  {...register("telefono")}
+                  className="w-full border border-gray-300 px-4 py-2 text-sm focus:outline-none focus:border-[#7C3AED]"
+                />
+                {errors.telefono && (
+                  <p className="text-red-500 text-xs mt-1">{errors.telefono.message}</p>
+                )}
+              </div>
 
-              <InPut
-                type="email"
-                name="correo"
-                placeholder="Correo electrónico"
-                value={formData.correo}
-                onChange={handleChange}
-                ClassName="w-full border border-gray-300 px-4 py-2 text-sm focus:outline-none focus:border-[#7C3AED]"
-              />
+              {/* Correo */}
+              <div>
+                <InPut
+                  type="email"
+                  placeholder="Correo electrónico"
+                  {...register("correo")}
+                  className="w-full border border-gray-300 px-4 py-2 text-sm focus:outline-none focus:border-[#7C3AED]"
+                />
+                {errors.correo && (
+                  <p className="text-red-500 text-xs mt-1">{errors.correo.message}</p>
+                )}
+              </div>
 
-              <InPut
-                type="password"
-                name="contraseña"
-                placeholder="Contraseña"
-                value={formData.contraseña}
-                onChange={handleChange}
-                ClassName="w-full border border-gray-300 px-4 py-2 text-sm focus:outline-none focus:border-[#7C3AED]"
-              />
+              {/* Contraseña */}
+              <div>
+                <InPut
+                  type="password"
+                  placeholder="Contraseña"
+                  {...register("contraseña")}
+                  className="w-full border border-gray-300 px-4 py-2 text-sm focus:outline-none focus:border-[#7C3AED]"
+                />
+                {errors.contraseña && (
+                  <p className="text-red-500 text-xs mt-1">{errors.contraseña.message}</p>
+                )}
+              </div>
 
+              {/* Botón */}
               <Button
                 texto="Registrarme"
                 type="submit"
@@ -105,7 +128,7 @@ const Registro = () => {
           </div>
         </div>
 
-        {/* Imagen */}
+        {/* Imagen lateral */}
         <div
           className="w-1/2 bg-cover bg-center"
           style={{
