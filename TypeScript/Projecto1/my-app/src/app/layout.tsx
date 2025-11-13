@@ -1,9 +1,21 @@
-import type { Metadata } from "next";
 import "../styles/Tailwind.css";
+import { Roboto_Slab, Montserrat } from "next/font/google";
 
-export const metadata: Metadata = {
-  title: "Midnight Cup",
-  description: "Proyecto creado con Next.js, TypeScript y Tailwind CSS",
+const robotoSlab = Roboto_Slab({
+  subsets: ["latin"],
+  weight: ["400", "700"],
+  variable: "--font-roboto",
+});
+
+const montserrat = Montserrat({
+  subsets: ["latin"],
+  weight: ["400", "700"],
+  variable: "--font-montserrat",
+});
+
+export const metadata = {
+  title: "MidnightCode",
+  description: "Sitio oficial de MidnightCode",
 };
 
 export default function RootLayout({
@@ -12,8 +24,13 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   return (
-    <html lang="es">
-      <body className="min-h-screen bg-white text-black">{children}</body>
+    <html
+      lang="es"
+      className={`${robotoSlab.variable} ${montserrat.variable} bg-[#0b0b2b]`}
+    >
+      <body className="bg-[#0b0b2b] text-white font-[var(--font-roboto)]">
+        {children}
+      </body>
     </html>
   );
 }
