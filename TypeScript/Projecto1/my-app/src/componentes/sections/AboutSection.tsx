@@ -55,8 +55,7 @@ const AboutSection: React.FC = () => {
             ))}
           </ul>
 
-          {/* línea vertical */}
-          <div className="absolute top-0 bottom-0 w-1 bg-yellow-300 left-1/2 transform -translate-x-1/2 hidden md:block"></div>
+          
         </div>
       </div>
     </section>

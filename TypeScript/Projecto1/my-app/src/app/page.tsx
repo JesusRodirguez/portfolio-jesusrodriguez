@@ -12,7 +12,7 @@ import Footer from "@/componentes/layout/Footer";
 
 export default function Page() {
   return (
-    <div className="bg-white text-black">
+    <div className="bg-black text-black">
       <Navbar brand="MidnightCode" />
       <main className="pt-20">
         <HeroSection />
