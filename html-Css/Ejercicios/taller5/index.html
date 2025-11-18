@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+
+  <link href="https://cdn.jsdelivr.net/npm/remixicon@4.1.0/fonts/remixicon.css" rel="stylesheet" />
+
+  <link rel="stylesheet" href="./style.css" />
+  <title>Login Panel</title>
+</head>
+
+<body>
+
+  <div class="layout">
+
+    <div class="loginCard">
+      <h2 class="subtitle">Welcome back</h2>
+      <h1 class="title">Sign In</h1>
+
+      <form class="formArea">
+
+        <label class="label">Email Address</label>
+        <div class="inputFieldBox">
+          <input type="email" class="inputField" placeholder="example@mail.com" required>
+        </div>
+
+        <label class="label">Password</label>
+        <div class="inputFieldBox">
+          <input type="password" id="pass" class="inputField" placeholder="••••••••" required>
+          <span class="togglePass" id="togglePass"><i class="ri-eye-off-line"></i></span>
+        </div>
+
+        <div class="forgotBox">
+          <a href="#" class="forgotLink">Forgot password?</a>
+        </div>
+
+        <button class="submitBtn">Login</button>
+
+      </form>
+
+      <div class="divider">Or continue with</div>
+
+      <div class="socialBar">
+        <a href="#" class="socialBtn"><img src="img/search.png"></a>
+        <a href="#" class="socialBtn"><img src="img/github.png"></a>
+        <a href="#" class="socialBtn"><img src="img/facebook.png"></a>
+      </div>
+
+      <p class="registerText">
+        Don't have an account?
+        <a href="#" class="registerLink">Sign up</a>
+      </p>
+    </div>
+
+    <div class="imageBox">
+      <img src="img/1.png" alt="illustration">
+    </div>
+
+  </div>
+
+  <script>
+    const togglePass = document.getElementById("togglePass");
+
+    togglePass.addEventListener("click", () => {
+      const input = document.getElementById("pass");
+      const icon = togglePass.querySelector("i");
+      const isHidden = input.type === "password";
+
+      input.type = isHidden ? "text" : "password";
+      icon.className = isHidden ? "ri-eye-line" : "ri-eye-off-line";
+    });
+  </script>
+
+</body>
+
+</html>
