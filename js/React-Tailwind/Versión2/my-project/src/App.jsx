@@ -1,8 +1,8 @@
 import { Routes, Route } from "react-router-dom";
 // Modulo Home
-import Home from "./view/ModuloHome/Home";
 import Login from "./view/ModuloHome/Login";
 import Registro from "./view/ModuloHome/Registro";
+import Home from "./view/ModuloHome/Home";
 // Modulo Usuario 
 import PaginaPrincipal from "./view/ModuloUsuario/PaginaPrincipal";
 import AboutUs from "./view/ModuloUsuario/AboutUs";
