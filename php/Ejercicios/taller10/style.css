@@ -1,0 +1,44 @@
+
+body {
+    background-color: #ccc;
+    color: black;
+    font-family: 'Courier New', monospace;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+}
+.cajero-container {
+    background-color: #ccc;
+    padding: 30px;
+    border-radius: 20px;
+    width: 450px;
+    text-align: center;
+    box-shadow: 0 0 30px indigo;
+}
+h1 {color: black; margin-bottom: 20px;}
+.pantalla {
+    background-color: black;
+    color: #00ffcc;
+    height: 400px;
+    margin-bottom: 20px;
+    border-radius: 10px;
+    padding: 10px;
+    overflow-y: auto;
+}
+.boton {
+    width: 120px;
+    padding: 15px;
+    margin: 5px;
+    border-radius: 10px;
+    border: none;
+    font-weight: bold;
+    font-size: 16px;
+    cursor: pointer;
+    background-color: blue;
+    color: white;
+    transition: 0.2s;
+}
+.boton:hover {background-color: red;}
+p.error {color: #ff4d4d;}
+
