@@ -2,7 +2,19 @@
 import React from "react";
 import FondoEstrellas from "../Effect/FondoEstrellas";
 
-const HeroSection: React.FC = () => {
+interface HeroProps {
+  titulo: string;
+  subtitulo?: string;
+  textoBoton?: string;
+  linkBoton?: string;
+}
+
+const HeroSection: React.FC<HeroProps> = ({
+  titulo,
+  subtitulo,
+  textoBoton = "Ver más",
+  linkBoton = "#",
+}) => {
   return (
     <section
       id="home"
@@ -16,17 +28,21 @@ const HeroSection: React.FC = () => {
         <FondoEstrellas />
       </div>
 
-      {/* Contenido encima */}
+      {/* Contenido */}
       <div className="relative z-10 text-center text-white bg-black/40 p-8 rounded-xl">
         <h1 className="text-4xl md:text-6xl font-bold uppercase mb-6">
-          Bienvenido a NidnightCode
+          {titulo}
         </h1>
-        <h3 className="h-font text-yellow-400 mb-4">¿Preparado para Disfrutar?</h3>
+
+        {subtitulo && (
+          <h3 className="h-font text-yellow-400 mb-4">{subtitulo}</h3>
+        )}
+
         <a
-          href="/Registro"
+          href={linkBoton}
           className="inline-block bg-yellow-400 text-black font-semibold py-3 px-6 rounded-lg hover:brightness-95 transition"
         >
-          Registrarse
+          {textoBoton}
         </a>
       </div>
     </section>

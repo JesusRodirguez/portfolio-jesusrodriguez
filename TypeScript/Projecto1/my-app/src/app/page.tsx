@@ -15,7 +15,11 @@ export default function Page() {
     <div className="bg-black text-black">
       <Navbar brand="MidnightCode" />
       <main className="pt-20">
-        <HeroSection />
+        <HeroSection 
+        titulo="Bienvenido a MidnightCode"
+        subtitulo="¿Preparado para disfrutar?"
+        textoBoton="Registrarse"
+        linkBoton="/Registro"/>
         <ServicesSection />
         <PortfolioSection />
         <AboutSection />
