@@ -3,6 +3,9 @@ import React, { useState } from "react";
 import { useForm, Controller } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import * as yup from "yup";
+import { useRouter } from "next/navigation";
+
+
 
 import InPut from "@/componentes/UI/InPut";
 import Button from "@/componentes/UI/Button";
@@ -11,6 +14,8 @@ type FormData = {
   email: string;
   password: string;
 };
+const EMAIL_VALIDO = "usuario@gmail.com";
+const PASSWORD_VALIDA = "User123!";
 
 const schema = yup.object({
   email: yup.string().required("Correo obligatorio").email("Correo inválido"),
@@ -25,6 +30,7 @@ const schema = yup.object({
 });
 
 export default function Login() {
+  const router = useRouter();
   const { control, handleSubmit, formState: { errors } } = useForm<FormData>({
     resolver: yupResolver(schema),
     defaultValues: { email: "", password: "" },
@@ -33,8 +39,13 @@ export default function Login() {
   const [showPassword, setShowPassword] = useState(false);
 
   const onSubmit = (data: FormData) => {
-    alert(JSON.stringify(data));
+    if (data.email === EMAIL_VALIDO && data.password === PASSWORD_VALIDA) {
+      router.push("/usuario/home");  
+    } else {
+      alert("Usuario o contraseña incorrectos"); 
+    }
   };
+
 
   return (
     <div className="min-h-screen w-full flex items-center justify-center bg-[#F4F5F7] px-4">

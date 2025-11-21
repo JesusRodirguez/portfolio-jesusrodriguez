@@ -19,7 +19,7 @@ export default function NavbarTemplate() {
             href="#hero"
             className="text-white text-2xl font-semibold hover:opacity-80 transition-all smoothscroll"
           >
-            Puremedia.
+            MidnightCode
           </Link>
         </div>
 
@@ -54,38 +54,32 @@ export default function NavbarTemplate() {
         >
           <ul className="flex flex-col gap-4 lg:flex-row lg:gap-8 text-white text-sm">
             <li>
-              <Link href="#hero" className="smoothscroll hover:opacity-70">
-                Home.
+              <Link href="/" className="smoothscroll hover:opacity-70">
+                Home
               </Link>
             </li>
 
             <li>
               <Link href="#portfolio" className="smoothscroll hover:opacity-70">
-                Works.
+                Reservar
               </Link>
             </li>
 
             <li>
               <Link href="#services" className="smoothscroll hover:opacity-70">
-                Services.
+                Menu
               </Link>
             </li>
 
             <li>
               <Link href="#about" className="smoothscroll hover:opacity-70">
-                About.
+                Canción
               </Link>
             </li>
 
             <li>
               <Link href="#journal" className="smoothscroll hover:opacity-70">
-                Blog.
-              </Link>
-            </li>
-
-            <li>
-              <Link href="#contact" className="smoothscroll hover:opacity-70">
-                Contact.
+                Ayuda
               </Link>
             </li>
           </ul>
