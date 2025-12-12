@@ -1,54 +1,33 @@
 import React from "react";
 
-type InPutProps = {
+type InPutProps = React.InputHTMLAttributes<HTMLInputElement> & {
   classNameDiv?: string;
   textoLabel?: string;
   classNameLabel?: string;
-  type?: string;
-  name?: string;
-  id?: string;
-  placeHolder?: string;
-  value?: string;
-  onChange?: (e: React.ChangeEvent<HTMLInputElement>) => void;
-  required?: boolean;
-  autoFocus?: boolean;
   classNameInput?: string;
-  children?: React.ReactNode;
 };
 
 const InPut: React.FC<InPutProps> = ({
   classNameDiv = "",
-  textoLabel = "",
+  textoLabel,
   classNameLabel = "",
-  type = "text",
-  name = "",
-  id = "",
-  placeHolder = "",
-  value = "",
-  onChange,
-  required = false,
-  autoFocus = false,
   classNameInput = "",
   children,
+  ...props   
 }) => {
   return (
     <div className={classNameDiv}>
       {textoLabel && (
-        <label htmlFor={id} className={classNameLabel}>
+        <label htmlFor={props.id} className={classNameLabel}>
           {textoLabel}
         </label>
       )}
+
       <input
-        type={type}
-        name={name}
-        id={id}
-        placeholder={placeHolder}
-        value={value}
-        onChange={onChange}
-        required={required}
-        autoFocus={autoFocus}
         className={classNameInput}
+        {...props}   
       />
+
       {children}
     </div>
   );
