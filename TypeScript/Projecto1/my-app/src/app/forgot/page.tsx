@@ -18,6 +18,17 @@ const schema = yup.object({
 
 type FormData = yup.InferType<typeof schema>;
 
+// GENERADOR DE TOKEN
+const generateToken = () => {
+  const chars =
+    "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";
+  let token = "";
+  for (let i = 0; i < 32; i++) {
+    token += chars.charAt(Math.floor(Math.random() * chars.length));
+  }
+  return token;
+};
+
 export default function Forgot() {
   const router = useRouter();
 
@@ -38,13 +49,28 @@ export default function Forgot() {
       return;
     }
 
-    alert(`Se envió un enlace de recuperación a: ${data.email}`);
-    router.push("/resetpassword");
+    
+    const token = generateToken();
+
+    
+    localStorage.setItem("resetToken", token);
+    localStorage.setItem("resetEmail", data.email);
+
+    
+    navigator.clipboard.writeText(token).catch(() => {
+      console.warn("No se pudo copiar automáticamente el token");
+    });
+
+    alert (
+      `Correo encontrado: ${data.email}\n\nTu token de recuperación es:\n${token}\n\n(También se copió automáticamente al portapapeles)`
+    );
+
+   
+    router.push("/verifytoken");
   };
 
   return (
     <div className="min-h-screen w-full flex items-center justify-center bg-[#F4F5F7] px-4">
-
       <div className="bg-white w-full max-w-md rounded-xl shadow-lg p-8 border border-gray-200">
 
         {/* LOGO */}
@@ -90,7 +116,7 @@ export default function Forgot() {
           {/* BOTÓN CANCELAR */}
           <button
             type="button"
-            onClick={() => router.push("/")}
+            onClick={() => router.push("/login")}
             className="w-full mt-4 text-gray-700 font-medium flex items-center justify-center gap-1 
                        hover:text-gray-900"
           >
