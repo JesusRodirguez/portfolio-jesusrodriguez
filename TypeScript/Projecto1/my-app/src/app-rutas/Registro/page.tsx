@@ -4,9 +4,9 @@ import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import * as yup from "yup";
 
-import Title from "@/componentes/UI/Title";
-import InPut from "@/componentes/UI/InPut";
-import Button from "@/componentes/UI/Button";
+import Title from "@/componentes-views/UI/Title";
+import InPut from "@/componentes-views/UI/InPut";
+import Button from "@/componentes-views/UI/Button";
 import "../../styles/Tailwind.css";
 
 const schema = yup.object({

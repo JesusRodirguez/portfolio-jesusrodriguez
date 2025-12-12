@@ -7,8 +7,8 @@ import { useRouter } from "next/navigation";
 
 
 
-import InPut from "@/componentes/UI/InPut";
-import Button from "@/componentes/UI/Button";
+import InPut from "@/componentes-views/UI/InPut";
+import Button from "@/componentes-views/UI/Button";
 
 type FormData = {
   email: string;

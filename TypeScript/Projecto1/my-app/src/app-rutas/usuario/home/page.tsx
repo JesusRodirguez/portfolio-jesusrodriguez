@@ -1,10 +1,10 @@
 import "../../../styles/Tailwind.css"
 
-import NavbarTemplate from "@/componentes/layout/NavBarTemplate"
-import HeroSection from "@/componentes/layout/HeroSection"
-import ServicesSection from "@/componentes/sections/ServicesSection"
-import Footer from "@/componentes/layout/Footer"
-import Dragon from "@/componentes/Effect/EffectDragon"
+import NavbarTemplate from "@/componentes-views/layout/NavBarTemplate"
+import HeroSection from "@/componentes-views/layout/HeroSection"
+import ServicesSection from "@/componentes-views/sections/ServicesSection"
+import Footer from "@/componentes-views/layout/Footer"
+import Dragon from "@/componentes-views/Effect/EffectDragon"
 
 export default function PaginaPrincipal (){
     return(

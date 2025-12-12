@@ -1,13 +1,13 @@
 "use client";
 import React from "react";
-import Navbar from "@/componentes/layout/NavBarHome";
-import HeroSection from "@/componentes/layout/HeroSection";
-import ServicesSection from "@/componentes/sections/ServicesSection";
-import PortfolioSection from "@/componentes/sections/PortfolioSection";
-import AboutSection from "@/componentes/sections/AboutSection";
-import TeamSection from "@/componentes/sections/TeamSection";
-import ContactSection from "@/componentes/sections/ContactSection";
-import Footer from "@/componentes/layout/Footer";
+import Navbar from "@/componentes-views/layout/NavBarHome";
+import HeroSection from "@/componentes-views/layout/HeroSection";
+import ServicesSection from "@/componentes-views/sections/ServicesSection";
+import PortfolioSection from "@/componentes-views/sections/PortfolioSection";
+import AboutSection from "@/componentes-views/sections/AboutSection";
+import TeamSection from "@/componentes-views/sections/TeamSection";
+import ContactSection from "@/componentes-views/sections/ContactSection";
+import Footer from "@/componentes-views/layout/Footer";
 
 
 export default function Page() {
