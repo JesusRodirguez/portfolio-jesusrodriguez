@@ -39,7 +39,7 @@ export default function Forgot() {
     }
 
     alert(`Se envió un enlace de recuperación a: ${data.email}`);
-    router.push("/");
+    router.push("/resetpassword");
   };
 
   return (
