@@ -35,7 +35,7 @@ const Navbar: React.FC<NavbarProps> = ({ brand = "MidnightCode" }) => {
             <li><a href="#team" className="hover:text-yellow-300">Equipo</a></li>
             <li><a href="#contact" className="hover:text-yellow-300">Contacto</a></li>
             <li><a href="/Registro" className="hover:text-yellow-300">Registrarse</a></li>
-            <li><Link href="/login" className="ml-4 px-3 py-1 border border-white rounded hover:bg-white hover:text-black transition">Iniar Sesión</Link></li>
+            <li><Link href="/login" className="ml-4 px-3 py-1 border border-white rounded hover:bg-white hover:text-black transition">Iniciar Sesión</Link></li>
           </ul>
         </nav>
       </div>

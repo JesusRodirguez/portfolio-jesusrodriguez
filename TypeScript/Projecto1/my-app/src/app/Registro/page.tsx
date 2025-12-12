@@ -1,12 +1,9 @@
 "use client";
-import React, { useState } from "react";
+import React from "react";
+import { useRouter } from "next/navigation";
 import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import * as yup from "yup";
-
-import Title from "@/componentes-views/UI/Title";
-import InPut from "@/componentes-views/UI/InPut";
-import Button from "@/componentes-views/UI/Button";
 import "../../styles/Tailwind.css";
 
 const schema = yup.object({
@@ -39,6 +36,7 @@ const schema = yup.object({
 type FormData = yup.InferType<typeof schema>;
 
 export default function Registro() {
+  const router = useRouter();
   const { register, handleSubmit, formState: { errors } } = useForm<FormData>({
     resolver: yupResolver(schema),
   });
@@ -50,16 +48,14 @@ export default function Registro() {
   return (
     <div className="min-h-screen w-full flex items-center justify-center bg-[#F4F5F7] px-4">
 
-      {/* CARD IGUAL AL LOGIN */}
       <div className="bg-white w-full max-w-md rounded-xl shadow-lg p-8 border border-gray-200">
 
-        {/* LOGO IGUAL AL LOGIN */}
+        {/* LOGO */}
         <div className="flex items-center gap-2 justify-center mb-4">
           <div className="w-8 h-8 bg-yellow-500 rounded-md"></div>
           <span className="text-lg font-semibold text-gray-900">MidnightCode</span>
         </div>
 
-        {/* TITLE */}
         <h2 className="text-2xl font-bold text-gray-900 text-center mb-6">
           Create account
         </h2>
@@ -68,13 +64,13 @@ export default function Registro() {
 
           {/* NOMBRE */}
           <div>
-            <InPut
-              textoLabel="Full name"
+            <label htmlFor="nombre" className="text-gray-700 font-medium mb-1">
+              Full name
+            </label>
+            <input
               id="nombre"
               type="text"
-              classNameDiv="flex flex-col"
-              classNameLabel="text-gray-700 font-medium mb-1"
-              classNameInput="border border-gray-300 px-4 py-3 rounded-lg text-gray-900 bg-white focus:ring-2 focus:ring-blue-500 outline-none"
+              className="border border-gray-300 px-4 py-3 rounded-lg text-gray-900 bg-white focus:ring-2 focus:ring-blue-500 outline-none w-full"
               {...register("nombre")}
             />
             {errors.nombre && (
@@ -84,13 +80,13 @@ export default function Registro() {
 
           {/* EMAIL */}
           <div>
-            <InPut
-              textoLabel="Email address"
+            <label htmlFor="email" className="text-gray-700 font-medium mb-1">
+              Email address
+            </label>
+            <input
               id="email"
               type="email"
-              classNameDiv="flex flex-col"
-              classNameLabel="text-gray-700 font-medium mb-1"
-              classNameInput="border border-gray-300 px-4 py-3 rounded-lg text-gray-900 bg-white focus:ring-2 focus:ring-blue-500 outline-none"
+              className="border border-gray-300 px-4 py-3 rounded-lg text-gray-900 bg-white focus:ring-2 focus:ring-blue-500 outline-none w-full"
               {...register("email")}
             />
             {errors.email && (
@@ -100,13 +96,13 @@ export default function Registro() {
 
           {/* PASSWORD */}
           <div>
-            <InPut
-              textoLabel="Password"
+            <label htmlFor="password" className="text-gray-700 font-medium mb-1">
+              Password
+            </label>
+            <input
               id="password"
               type="password"
-              classNameDiv="flex flex-col"
-              classNameLabel="text-gray-700 font-medium mb-1"
-              classNameInput="border border-gray-300 px-4 py-3 rounded-lg text-gray-900 bg-white focus:ring-2 focus:ring-blue-500 outline-none"
+              className="border border-gray-300 px-4 py-3 rounded-lg text-gray-900 bg-white focus:ring-2 focus:ring-blue-500 outline-none w-full"
               {...register("password")}
             />
             {errors.password && (
@@ -116,13 +112,13 @@ export default function Registro() {
 
           {/* CONFIRMAR PASSWORD */}
           <div>
-            <InPut
-              textoLabel="Confirm password"
+            <label htmlFor="confirmarPassword" className="text-gray-700 font-medium mb-1">
+              Confirm password
+            </label>
+            <input
               id="confirmarPassword"
               type="password"
-              classNameDiv="flex flex-col"
-              classNameLabel="text-gray-700 font-medium mb-1"
-              classNameInput="border border-gray-300 px-4 py-3 rounded-lg text-gray-900 bg-white focus:ring-2 focus:ring-blue-500 outline-none"
+              className="border border-gray-300 px-4 py-3 rounded-lg text-gray-900 bg-white focus:ring-2 focus:ring-blue-500 outline-none w-full"
               {...register("confirmarPassword")}
             />
             {errors.confirmarPassword && (
@@ -130,20 +126,31 @@ export default function Registro() {
             )}
           </div>
 
-          {/* BUTTON */}
-          <Button
+          {/* SUBMIT */}
+          <button
             type="submit"
-            textoButton="Create account"
-            classNameButton="w-full bg-yellow-500 text-white py-3 cursor-pointer rounded-lg hover:bg-yellow-700 transition-colors font-semibold"
-          />
-
+            className="w-full bg-yellow-500 text-white py-3 cursor-pointer rounded-lg hover:bg-yellow-700 transition-colors font-semibold"
+          >
+            Create account
+          </button>
         </form>
+
+        {/* BOTÓN REGRESAR */}
+        <button
+          onClick={() => router.push("/")}
+          className="w-full mt-4 text-gray-700 font-medium flex items-center justify-center gap-1 hover:text-gray-900"
+        >
+          <span className="text-lg">←</span> Regresar
+        </button>
 
         <p className="text-center text-sm text-gray-600 mt-4">
           Already have an account?{" "}
-          <a href="#" className="text-blue-600 font-medium hover:underline">
+          <button
+            onClick={() => router.push("/login")}
+            className="text-blue-600 font-medium hover:underline"
+          >
             Sign in
-          </a>
+          </button>
         </p>
       </div>
 

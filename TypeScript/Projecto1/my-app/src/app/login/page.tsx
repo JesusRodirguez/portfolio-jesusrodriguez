@@ -138,21 +138,31 @@ export default function Login() {
               <a href="#" className="text-blue-600 hover:underline">Forgot your password?</a>
             </div>
           </div>
-
+          
           {/* BUTTON */}
           <Button
             type="submit"
             textoButton="Sign in"
             classNameButton="w-full bg-yellow-500 text-white py-3 cursor-pointer rounded-lg hover:bg-yellow-700 transition-colors font-semibold"
           />
-
+          <button
+          onClick={() => router.push("/")}
+          className="w-full mt-4 text-gray-700 font-medium flex items-center justify-center gap-1 hover:text-gray-900"
+          >
+          <span className="text-lg">←</span> Regresar
+        </button>
         </form>
 
         <p className="text-center text-sm text-gray-600 mt-4">
           Don't have an account?{" "}
-          <a href="#" className="text-blue-600 font-medium hover:underline">Create one</a>
+          <button
+          type="button"
+          onClick={() => router.push("/Registro")}
+          className="text-blue-600 font-medium hover:underline"
+          >
+            Create one
+          </button>
         </p>
-
       </div>
     </div>
   );
