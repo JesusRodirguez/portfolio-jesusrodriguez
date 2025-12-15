@@ -126,7 +126,7 @@ export default function Registro() {
             )}
           </div>
 
-          {/* SUBMIT */}
+          
           <button
             type="submit"
             className="w-full bg-yellow-500 text-white py-3 cursor-pointer rounded-lg hover:bg-yellow-700 transition-colors font-semibold"
@@ -135,7 +135,7 @@ export default function Registro() {
           </button>
         </form>
 
-        {/* BOTÓN REGRESAR */}
+        
         <button
           onClick={() => router.push("/")}
           className="w-full mt-4 text-gray-700 font-medium flex items-center justify-center gap-1 hover:text-gray-900"
